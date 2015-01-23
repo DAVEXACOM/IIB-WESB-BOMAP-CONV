@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://www.ibm.com/2008/ccl/Mapping" xmlns:NS1="http://www.ibm.com/2008/ccl/Mapping" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="mappingRoot">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="NS1:input"/>
+        <xsd:element ref="NS1:output"/>
+        <xsd:element ref="NS1:generation"/>
+        <xsd:element ref="NS1:mappingDeclaration"/>
+      </xsd:sequence>
+      <xsd:attribute name="domainIDExtension" type="xsd:string"/>
+      <xsd:attribute name="mainMap" type="xsd:string"/>
+      <xsd:attribute name="version" type="xsd:string"/>
+      <xsd:attribute name="targetNamespace" type="xsd:string"/>
+      <xsd:attribute name="domainID" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="move">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="NS1:input"/>
+        <xsd:element ref="NS1:output"/>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="output">
+    <xsd:complexType>
+      <xsd:attribute name="path" type="xsd:string"/>
+      <xsd:attribute name="namespace" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="generation">
+    <xsd:complexType>
+      <xsd:attribute name="engine" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="input">
+    <xsd:complexType>
+      <xsd:attribute name="path" type="xsd:string"/>
+      <xsd:attribute name="namespace" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="mappingDeclaration">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="NS1:input"/>
+        <xsd:element ref="NS1:output"/>
+        <xsd:element ref="NS1:move"/>
+      </xsd:sequence>
+      <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

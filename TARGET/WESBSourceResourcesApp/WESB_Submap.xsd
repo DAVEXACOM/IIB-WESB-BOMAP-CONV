@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://www.ibm.com/xmlns/prod/websphere/wbiserver/map/6.0.0" xmlns:map="http://www.ibm.com/xmlns/prod/websphere/wbiserver/map/6.0.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="inputBusinessObjectVariable">
+    <xsd:complexType>
+      <xsd:attribute name="businessObjectRef" type="xsd:string"/>
+      <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="name" type="xsd:string"/>
+  <xsd:element name="outputBusinessObjectVariable">
+    <xsd:complexType>
+      <xsd:attribute name="businessObjectRef" type="xsd:string"/>
+      <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+  <xsd:element name="businessObjectMap">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element ref="map:name"/>
+        <xsd:element ref="map:inputBusinessObjectVariable"/>
+        <xsd:element ref="map:outputBusinessObjectVariable"/>
+      </xsd:sequence>
+      <xsd:attribute name="targetNamespace" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

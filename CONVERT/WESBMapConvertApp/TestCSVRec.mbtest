@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:com.ibm.etools.mft.unittest.core.models.client="http:///com/ibm/etools/mft/unittest/core/models/client.ecore" xmlns:com.ibm.wbit.comptest.common.models.event="http:///com/ibm/etools/mft/unittest/common/models/event.ecore" xmlns:com.ibm.wbit.comptest.common.models.value="http:///com/ibm/etools/mft/unittest/common/models/value.ecore" xmlns:jms="http:///com/ibm//etools/mft/unittest/common/model2/jms" xmlns:model2="http:///com/ibm//etools/mft/unittest/common/model2" xmlns:mq="http:///com/ibm//etools/mft/unittest/common/model2/mq">
+  <com.ibm.etools.mft.unittest.core.models.client:EclipseClient iD="1409627890621-0" eventTrace="/1" clientID="1409627890621-0">
+    <scopes xsi:type="model2:FlowTestScope" name="Configuration" iD="default">
+      <settings xsi:type="model2:FlowSettings"/>
+      <settings xsi:type="model2:DeploymentSettings"/>
+      <settings xsi:type="mq:MQSettings"/>
+      <settings xsi:type="jms:JMSSettings"/>
+      <settings xsi:type="mq:MQMessageHeaders"/>
+      <settings xsi:type="jms:JMSMessageHeaders"/>
+      <messageHeaders xsi:type="mq:MQHeader" iD="1409627890656-3" headerName="Default Header"/>
+      <messageHeaders xsi:type="jms:JMSHeader" headerName="Default Header"/>
+    </scopes>
+  </com.ibm.etools.mft.unittest.core.models.client:EclipseClient>
+  <com.ibm.wbit.comptest.common.models.event:ExecutionEventTrace iD="1409627890623-1" children="/2 /3"/>
+  <mq:InteractiveMQEnqueueEvent iD="1409627896142-5" timestamp="1409627896142" children="/4 /6 /8 /10 /12 /14 /16" host="localhost" port="2414" queueManager="IB9QMGR" queue="IN.Q">
+    <properties name="SERVER_CHANNEL" stringValue="SYSTEM.BKR.CONFIG"/>
+    <request xsi:type="model2:TestMessage" iD="1409627896142-6" header="/0/@scopes.0/@messageHeaders.0">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="MD_mesBlastBlockMessageType_To_Blastblock_Submap%2Csubmap%2CmesBlastBlockMessageType%2Chttp%3A%2F%2Fbhpbilliton.net%2Fservices%2CBlastblock%2Chttp%3A%2F%2FMQ2BlastblockNotificationPublisher%2FBlastblockCMM%2C%2FMM_IM_MQ2_pub%0D%0A"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+    </request>
+  </mq:InteractiveMQEnqueueEvent>
+  <mq:InteractiveMQDequeueEvent iD="1409629665867-17" timestamp="1409629665868" children="/5 /7 /9 /11 /13 /15 /17" host="localhost" port="2414" queueManager="IB9QMGR" queue="OUT.Q">
+    <properties name="SERVER_CHANNEL" stringValue="SYSTEM.BKR.CONFIG"/>
+    <request xsi:type="model2:TestMessage" iD="1409629665868-18"/>
+  </mq:InteractiveMQDequeueEvent>
+  <mq:MQInformationEvent name="Message sent to MQ Queue &quot;IN.Q&quot;" iD="1409629680532-19" host="localhost" port="2414" queueManager="IB9QMGR" queue="IN.Q" readOnly="true" clientID="1409627890621-0" parentID="1409627896142-5" timestamp="1409629680532">
+    <message xsi:type="model2:TestMessage" iD="1409627896142-6" header="/0/@scopes.0/@messageHeaders.0">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="MD_mesBlastBlockMessageType_To_Blastblock_Submap%2Csubmap%2CmesBlastBlockMessageType%2CBlastblock%2C%2FMM_IM_MQ2_pub%0D%0A"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409629680532-21" characterSet="819" encoding="273" format="        " putDateTime="Tue Sep 02 13:48:00 EST 2014" msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%01%C2%B8%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQInformationEvent>
+  <mq:MQQueueMonitorEvent name="MQ Queue Monitor &quot;OUT.Q&quot;" iD="1409629684992-22" host="localhost" port="2414" queueManager="IB9QMGR" queue="OUT.Q" readOnly="true" clientID="1409627890621-0" parentID="1409629665867-17" timestamp="1409629684992">
+    <message xsi:type="model2:TestMessage" iD="1409629684992-23">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="%3CNS1%3AmappingRoot+xmlns%3ANS1%3D%22http%3A%2F%2Fwww.ibm.com%2F2008%2Fccl%2FMapping%22%3E%3CdomainID%3Ecom.ibm.msl.mapping.xml%3C%2FdomainID%3E%3CdomainIDExtension%3Emb%3C%2FdomainIDExtension%3E%3CmainMap%3Efalse%3C%2FmainMap%3E%3CtargetNamespace%3Edefault%3C%2FtargetNamespace%3E%3Cversion%3E8.0.4.0%3C%2Fversion%3E%3CNS1%3Ainput%3E%3Cpath%3E%2FmesBlastBlockMessageType.xsd%3C%2Fpath%3E%3C%2FNS1%3Ainput%3E%3CNS1%3Aoutput%3E%3Cpath%3E%2FBlastblock.xsd%3C%2Fpath%3E%3C%2FNS1%3Aoutput%3E%3CNS1%3Ageneration%3E%3Cengine%3Exquery%3C%2Fengine%3E%3C%2FNS1%3Ageneration%3E%3CNS1%3AmappingDeclaration%3E%3Cname%3EMD_mesBlastBlockMessageType_To_Blastblock_Submap%3C%2Fname%3E%3CNS1%3Ainput%3E%3Cnamespace%3Ehttp%3A%2F%2Fwww.da.com%2FmodelSchema%3C%2Fnamespace%3E%3Cpath%3EmesBlastBlockMessageType%3C%2Fpath%3E%3C%2FNS1%3Ainput%3E%3CNS1%3Aoutput%3E%3Cnamespace%3Ehttp%3A%2F%2Fwww.da.com%2FmodelSchema%3C%2Fnamespace%3E%3Cpath%3EBlastblock%3C%2Fpath%3E%3C%2FNS1%3Aoutput%3E%3C%2FNS1%3AmappingDeclaration%3E%3C%2FNS1%3AmappingRoot%3E"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <parameters xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingRoot" iD="1409629685057-24">
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="xmlns:NS1" iD="1409629685058-44" value="http://www.ibm.com/2008/ccl/Mapping"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="domainID" iD="1409629685058-25" value="com.ibm.msl.mapping.xml"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="domainIDExtension" iD="1409629685058-26" value="mb"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="mainMap" iD="1409629685058-27" value="false"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="targetNamespace" iD="1409629685058-28" value="default"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="version" iD="1409629685058-29" value="8.0.4.0"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409629685058-30">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="path" iD="1409629685058-31" value="/mesBlastBlockMessageType.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409629685058-32">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="path" iD="1409629685058-33" value="/Blastblock.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:generation" iD="1409629685058-34">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="engine" iD="1409629685058-35" value="xquery"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingDeclaration" iD="1409629685058-36">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="name" iD="1409629685058-37" value="MD_mesBlastBlockMessageType_To_Blastblock_Submap"/>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409629685058-38">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="namespace" iD="1409629685058-39" value="http://www.da.com/modelSchema"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="path" iD="1409629685058-40" value="mesBlastBlockMessageType"/>
+          </elements>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409629685058-41">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="namespace" iD="1409629685058-42" value="http://www.da.com/modelSchema"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="path" iD="1409629685058-43" value="Blastblock"/>
+          </elements>
+        </elements>
+      </parameters>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409629685059-45" applicationIdData="                                " applicationOriginData="    " characterSet="819" encoding="273" format="        " persistence="0" priority="0" putApplicationName="                            " putDateTime="Tue Sep 02 13:48:00 EST 2014" replyToQueueManagerName="IB9QMGR                                         " replyToQueueName="                                                " userId="            " msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%01%C2%B8%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQQueueMonitorEvent>
+  <mq:MQInformationEvent name="Message sent to MQ Queue &quot;IN.Q&quot;" iD="1409630501489-117" host="localhost" port="2414" queueManager="IB9QMGR" queue="IN.Q" readOnly="true" clientID="1409627890621-0" parentID="1409627896142-5" timestamp="1409630501489">
+    <message xsi:type="model2:TestMessage" iD="1409627896142-6" header="/0/@scopes.0/@messageHeaders.0">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="MD_mesBlastBlockMessageType_To_Blastblock_Submap%2Csubmap%2CmesBlastBlockMessageType%2CBlastblock%2C%2FMM_IM_MQ2_pub%0D%0A"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409630501489-119" characterSet="819" encoding="273" format="        " putDateTime="Tue Sep 02 14:01:41 EST 2014" msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%02%06%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQInformationEvent>
+  <mq:MQQueueMonitorEvent name="MQ Queue Monitor &quot;OUT.Q&quot;" iD="1409630505015-120" host="localhost" port="2414" queueManager="IB9QMGR" queue="OUT.Q" readOnly="true" clientID="1409627890621-0" parentID="1409629665867-17" timestamp="1409630505015">
+    <message xsi:type="model2:TestMessage" iD="1409630505015-121">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="%3CNS1%3AmappingRoot+xmlns%3ANS1%3D%22http%3A%2F%2Fwww.ibm.com%2F2008%2Fccl%2FMapping%22+domainID%3D%22com.ibm.msl.mapping.xml%22+domainIDExtension%3D%22mb%22+mainMap%3D%22false%22+targetNamespace%3D%22default%22+version%3D%228.0.4.0%22%3E%3CNS1%3Ainput+path%3D%22%2FmesBlastBlockMessageType.xsd%22%2F%3E%3CNS1%3Aoutput+path%3D%22%2FBlastblock.xsd%22%2F%3E%3CNS1%3Ageneration+engine%3D%22xquery%22%2F%3E%3CNS1%3AmappingDeclaration+name%3D%22MD_mesBlastBlockMessageType_To_Blastblock_Submap%22%3E%3CNS1%3Ainput+namespace%3D%22http%3A%2F%2Fwww.da.com%2FmodelSchema%22+path%3D%22mesBlastBlockMessageType%22%2F%3E%3CNS1%3Aoutput+namespace%3D%22http%3A%2F%2Fwww.da.com%2FmodelSchema%22+path%3D%22Blastblock%22%2F%3E%3C%2FNS1%3AmappingDeclaration%3E%3C%2FNS1%3AmappingRoot%3E"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <parameters xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingRoot" iD="1409630505018-122">
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="xmlns:NS1" iD="1409630505018-142" value="http://www.ibm.com/2008/ccl/Mapping"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="version" iD="1409630505018-141" value="8.0.4.0"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="targetNamespace" iD="1409630505018-140" value="default"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="mainMap" iD="1409630505018-139" value="false"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainIDExtension" iD="1409630505018-138" value="mb"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainID" iD="1409630505018-137" value="com.ibm.msl.mapping.xml"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409630505018-123">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409630505018-124" value="/mesBlastBlockMessageType.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409630505018-125">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409630505018-126" value="/Blastblock.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:generation" iD="1409630505018-127">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="engine" iD="1409630505018-128" value="xquery"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingDeclaration" iD="1409630505018-129">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="name" iD="1409630505018-136" value="MD_mesBlastBlockMessageType_To_Blastblock_Submap"/>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409630505018-130">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409630505018-132" value="mesBlastBlockMessageType"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409630505018-131" value="http://www.da.com/modelSchema"/>
+          </elements>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409630505018-133">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409630505018-135" value="Blastblock"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409630505018-134" value="http://www.da.com/modelSchema"/>
+          </elements>
+        </elements>
+      </parameters>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409630505018-143" applicationIdData="                                " applicationOriginData="    " characterSet="819" encoding="273" format="        " persistence="0" priority="0" putApplicationName="                            " putDateTime="Tue Sep 02 14:01:41 EST 2014" replyToQueueManagerName="IB9QMGR                                         " replyToQueueName="                                                " userId="            " msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%02%06%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQQueueMonitorEvent>
+  <mq:MQInformationEvent name="Message sent to MQ Queue &quot;IN.Q&quot;" iD="1409633357503-63" host="localhost" port="2414" queueManager="IB9QMGR" queue="IN.Q" readOnly="true" clientID="1409627890621-0" parentID="1409627896142-5" timestamp="1409633357503">
+    <message xsi:type="model2:TestMessage" iD="1409627896142-6" header="/0/@scopes.0/@messageHeaders.0">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="MD_mesBlastBlockMessageType_To_Blastblock_Submap%2Csubmap%2CmesBlastBlockMessageType%2CBlastblock%2C%2FMM_IM_MQ2_pub%0D%0A"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409633357504-65" characterSet="819" encoding="273" format="        " putDateTime="Tue Sep 02 14:49:17 EST 2014" msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%03%11%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQInformationEvent>
+  <mq:MQQueueMonitorEvent name="MQ Queue Monitor &quot;OUT.Q&quot;" iD="1409633360826-66" host="localhost" port="2414" queueManager="IB9QMGR" queue="OUT.Q" readOnly="true" clientID="1409627890621-0" parentID="1409629665867-17" timestamp="1409633360826">
+    <message xsi:type="model2:TestMessage" iD="1409633360826-67">
+      <properties name="messageSource" stringValue="structureView"/>
+      <properties name="plainText" stringValue="%3CNS1%3AmappingRoot+xmlns%3ANS1%3D%22http%3A%2F%2Fwww.ibm.com%2F2008%2Fccl%2FMapping%22+domainID%3D%22com.ibm.msl.mapping.xml%22+domainIDExtension%3D%22mb%22+mainMap%3D%22false%22+targetNamespace%3D%22default%22+version%3D%228.0.4.0%22%3E%3CNS1%3Ainput+path%3D%22%2FmesBlastBlockMessageType.xsd%22%2F%3E%3CNS1%3Aoutput+path%3D%22%2FBlastblock.xsd%22%2F%3E%3CNS1%3Ageneration+engine%3D%22xquery%22%2F%3E%3CNS1%3AmappingDeclaration+name%3D%22MD_mesBlastBlockMessageType_To_Blastblock_Submap%22%3E%3CNS1%3Ainput+namespace%3D%22http%3A%2F%2Fbhpbilliton.net%2Fservices%22+path%3D%22type%28%26apos%3B%26apos%3B%7C%7CInputRoot.DFDL.maplist.record.input%7C%7C%26apos%3B%26apos%3B%29%22%2F%3E%3CNS1%3Aoutput+namespace%3D%22http%3A%2F%2FMQ2BlastblockNotificationPublisher%2FBlastblockCMM%22+path%3D%22Blastblock%22%2F%3E%3C%2FNS1%3AmappingDeclaration%3E%3C%2FNS1%3AmappingRoot%3E"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <parameters xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingRoot" iD="1409633360831-68">
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="xmlns:NS1" iD="1409633360833-88" value="http://www.ibm.com/2008/ccl/Mapping"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="version" iD="1409633360833-87" value="8.0.4.0"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="targetNamespace" iD="1409633360833-86" value="default"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="mainMap" iD="1409633360833-85" value="false"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainIDExtension" iD="1409633360833-84" value="mb"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainID" iD="1409633360833-83" value="com.ibm.msl.mapping.xml"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409633360832-69">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409633360832-70" value="/mesBlastBlockMessageType.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409633360833-71">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409633360833-72" value="/Blastblock.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:generation" iD="1409633360833-73">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="engine" iD="1409633360833-74" value="xquery"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingDeclaration" iD="1409633360833-75">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="name" iD="1409633360833-82" value="MD_mesBlastBlockMessageType_To_Blastblock_Submap"/>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409633360833-76">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409633360833-78" value="type(''||InputRoot.DFDL.maplist.record.input||'')"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409633360833-77" value="http://bhpbilliton.net/services"/>
+          </elements>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409633360833-79">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409633360833-81" value="Blastblock"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409633360833-80" value="http://MQ2BlastblockNotificationPublisher/BlastblockCMM"/>
+          </elements>
+        </elements>
+      </parameters>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409633360833-89" applicationIdData="                                " applicationOriginData="    " characterSet="819" encoding="273" format="        " persistence="0" priority="0" putApplicationName="                            " putDateTime="Tue Sep 02 14:49:17 EST 2014" replyToQueueManagerName="IB9QMGR                                         " replyToQueueName="                                                " userId="            " msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%03%11%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQQueueMonitorEvent>
+  <mq:MQInformationEvent name="Message sent to MQ Queue &quot;IN.Q&quot;" iD="1409634119353-94" host="localhost" port="2414" queueManager="IB9QMGR" queue="IN.Q" readOnly="true" clientID="1409627890621-0" parentID="1409627896142-5" timestamp="1409634119353">
+    <message xsi:type="model2:TestMessage" iD="1409627896142-6" header="/0/@scopes.0/@messageHeaders.0">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="MD_mesBlastBlockMessageType_To_Blastblock_Submap%2Csubmap%2CmesBlastBlockMessageType%2CBlastblock%2C%2FMM_IM_MQ2_pub%0D%0A"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409634119360-96" characterSet="819" encoding="273" format="        " putDateTime="Tue Sep 02 15:01:59 EST 2014" msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%03Y%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQInformationEvent>
+  <mq:MQQueueMonitorEvent name="MQ Queue Monitor &quot;OUT.Q&quot;" iD="1409634122453-97" host="localhost" port="2414" queueManager="IB9QMGR" queue="OUT.Q" readOnly="true" clientID="1409627890621-0" parentID="1409629665867-17" timestamp="1409634122453">
+    <message xsi:type="model2:TestMessage" iD="1409634122453-98">
+      <properties name="messageSource" stringValue="structureView"/>
+      <properties name="plainText" stringValue="%3CNS1%3AmappingRoot+xmlns%3ANS1%3D%22http%3A%2F%2Fwww.ibm.com%2F2008%2Fccl%2FMapping%22+domainID%3D%22com.ibm.msl.mapping.xml%22+domainIDExtension%3D%22mb%22+mainMap%3D%22false%22+targetNamespace%3D%22default%22+version%3D%228.0.4.0%22%3E%3CNS1%3Ainput+path%3D%22%2FmesBlastBlockMessageType.xsd%22%2F%3E%3CNS1%3Aoutput+path%3D%22%2FBlastblock.xsd%22%2F%3E%3CNS1%3Ageneration+engine%3D%22xquery%22%2F%3E%3CNS1%3AmappingDeclaration+name%3D%22MD_mesBlastBlockMessageType_To_Blastblock_Submap%22%3E%3CNS1%3Ainput+namespace%3D%22http%3A%2F%2Fbhpbilliton.net%2Fservices%22+path%3D%22type%28%26apos%3BmesBlastBlockMessageType%26apos%3B%29%22%2F%3E%3CNS1%3Aoutput+namespace%3D%22http%3A%2F%2FMQ2BlastblockNotificationPublisher%2FBlastblockCMM%22+path%3D%22Blastblock%22%2F%3E%3C%2FNS1%3AmappingDeclaration%3E%3C%2FNS1%3AmappingRoot%3E"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <parameters xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingRoot" iD="1409634122459-99">
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="xmlns:NS1" iD="1409634122459-119" value="http://www.ibm.com/2008/ccl/Mapping"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="version" iD="1409634122459-118" value="8.0.4.0"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="targetNamespace" iD="1409634122459-117" value="default"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="mainMap" iD="1409634122459-116" value="false"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainIDExtension" iD="1409634122459-115" value="mb"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainID" iD="1409634122459-114" value="com.ibm.msl.mapping.xml"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409634122459-100">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409634122459-101" value="/mesBlastBlockMessageType.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409634122459-102">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409634122459-103" value="/Blastblock.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:generation" iD="1409634122459-104">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="engine" iD="1409634122459-105" value="xquery"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingDeclaration" iD="1409634122459-106">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="name" iD="1409634122459-113" value="MD_mesBlastBlockMessageType_To_Blastblock_Submap"/>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409634122459-107">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409634122459-109" value="type('mesBlastBlockMessageType')"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409634122459-108" value="http://bhpbilliton.net/services"/>
+          </elements>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409634122459-110">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409634122459-112" value="Blastblock"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409634122459-111" value="http://MQ2BlastblockNotificationPublisher/BlastblockCMM"/>
+          </elements>
+        </elements>
+      </parameters>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409634122459-120" applicationIdData="                                " applicationOriginData="    " characterSet="819" encoding="273" format="        " persistence="0" priority="0" putApplicationName="                            " putDateTime="Tue Sep 02 15:01:59 EST 2014" replyToQueueManagerName="IB9QMGR                                         " replyToQueueName="                                                " userId="            " msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%03Y%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQQueueMonitorEvent>
+  <mq:MQInformationEvent name="Message sent to MQ Queue &quot;IN.Q&quot;" iD="1409634381012-125" host="localhost" port="2414" queueManager="IB9QMGR" queue="IN.Q" readOnly="true" clientID="1409627890621-0" parentID="1409627896142-5" timestamp="1409634381012">
+    <message xsi:type="model2:TestMessage" iD="1409627896142-6" header="/0/@scopes.0/@messageHeaders.0">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="MD_mesBlastBlockMessageType_To_Blastblock_Submap%2Csubmap%2CmesBlastBlockMessageType%2CBlastblock%2C%2FMM_IM_MQ2_pub%0D%0A"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409634381012-127" characterSet="819" encoding="273" format="        " putDateTime="Tue Sep 02 15:06:21 EST 2014" msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%03r%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQInformationEvent>
+  <mq:MQQueueMonitorEvent name="MQ Queue Monitor &quot;OUT.Q&quot;" iD="1409634384392-128" host="localhost" port="2414" queueManager="IB9QMGR" queue="OUT.Q" readOnly="true" clientID="1409627890621-0" parentID="1409629665867-17" timestamp="1409634384392">
+    <message xsi:type="model2:TestMessage" iD="1409634384392-129">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="%3CNS1%3AmappingRoot+xmlns%3ANS1%3D%22http%3A%2F%2Fwww.ibm.com%2F2008%2Fccl%2FMapping%22+domainID%3D%22com.ibm.msl.mapping.xml%22+domainIDExtension%3D%22mb%22+mainMap%3D%22false%22+targetNamespace%3D%22default%22+version%3D%228.0.4.0%22%3E%3CNS1%3Ainput+path%3D%22%2FmesBlastBlockMessageType.xsd%22%2F%3E%3CNS1%3Aoutput+path%3D%22%2FBlastblock.xsd%22%2F%3E%3CNS1%3Ageneration+engine%3D%22xquery%22%2F%3E%3CNS1%3AmappingDeclaration+name%3D%22MD_mesBlastBlockMessageType_To_Blastblock_Submap%22%3E%3CNS1%3Ainput+namespace%3D%22http%3A%2F%2Fbhpbilliton.net%2Fservices%22+path%3D%22type%28%26apos%3BmesBlastBlockMessageType%26apos%3B%29%22%2F%3E%3CNS1%3Aoutput+namespace%3D%22http%3A%2F%2FMQ2BlastblockNotificationPublisher%2FBlastblockCMM%22+path%3D%22Blastblock%22%2F%3E%3C%2FNS1%3AmappingDeclaration%3E%3C%2FNS1%3AmappingRoot%3E"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <parameters xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingRoot" iD="1409634384395-130">
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="xmlns:NS1" iD="1409634384395-150" value="http://www.ibm.com/2008/ccl/Mapping"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="version" iD="1409634384395-149" value="8.0.4.0"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="targetNamespace" iD="1409634384395-148" value="default"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="mainMap" iD="1409634384395-147" value="false"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainIDExtension" iD="1409634384395-146" value="mb"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainID" iD="1409634384395-145" value="com.ibm.msl.mapping.xml"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409634384395-131">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409634384395-132" value="/mesBlastBlockMessageType.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409634384395-133">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409634384395-134" value="/Blastblock.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:generation" iD="1409634384395-135">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="engine" iD="1409634384395-136" value="xquery"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingDeclaration" iD="1409634384395-137">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="name" iD="1409634384395-144" value="MD_mesBlastBlockMessageType_To_Blastblock_Submap"/>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409634384395-138">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409634384395-140" value="type('mesBlastBlockMessageType')"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409634384395-139" value="http://bhpbilliton.net/services"/>
+          </elements>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409634384395-141">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409634384395-143" value="Blastblock"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409634384395-142" value="http://MQ2BlastblockNotificationPublisher/BlastblockCMM"/>
+          </elements>
+        </elements>
+      </parameters>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409634384395-151" applicationIdData="                                " applicationOriginData="    " characterSet="819" encoding="273" format="        " persistence="0" priority="0" putApplicationName="                            " putDateTime="Tue Sep 02 15:06:21 EST 2014" replyToQueueManagerName="IB9QMGR                                         " replyToQueueName="                                                " userId="            " msgId="AMQ+IB9QMGR+++++%C3%B8%27%05T+%03r%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQQueueMonitorEvent>
+  <mq:MQInformationEvent name="Message sent to MQ Queue &quot;IN.Q&quot;" iD="1409646426769-144" host="localhost" port="2414" queueManager="IB9QMGR" queue="IN.Q" readOnly="true" clientID="1409627890621-0" parentID="1409627896142-5" timestamp="1409646426769">
+    <message xsi:type="model2:TestMessage" iD="1409627896142-6" header="/0/@scopes.0/@messageHeaders.0">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="MD_mesBlastBlockMessageType_To_Blastblock_Submap%2Csubmap%2CmesBlastBlockMessageType%2Chttp%3A%2F%2Fbhpbilliton.net%2Fservices%2CBlastblock%2Chttp%3A%2F%2FMQ2BlastblockNotificationPublisher%2FBlastblockCMM%2C%2FMM_IM_MQ2_pub%0D%0A"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409646426805-146" characterSet="819" encoding="273" format="        " putDateTime="Tue Sep 02 18:27:06 EST 2014" msgId="AMQ+IB9QMGR+++++%14W%05T+%00%3B%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQInformationEvent>
+  <mq:MQQueueMonitorEvent name="MQ Queue Monitor &quot;OUT.Q&quot;" iD="1409646430856-147" host="localhost" port="2414" queueManager="IB9QMGR" queue="OUT.Q" readOnly="true" clientID="1409627890621-0" parentID="1409629665867-17" timestamp="1409646430856">
+    <message xsi:type="model2:TestMessage" iD="1409646430856-148">
+      <properties name="messageSource" stringValue="structureView"/>
+      <properties name="plainText" stringValue="%3CNS1%3AmappingRoot+xmlns%3ANS1%3D%22http%3A%2F%2Fwww.ibm.com%2F2008%2Fccl%2FMapping%22+domainID%3D%22com.ibm.msl.mapping.xml%22+domainIDExtension%3D%22mb%22+mainMap%3D%22false%22+targetNamespace%3D%22default%22+version%3D%228.0.4.0%22%3E%3CNS1%3Ainput+path%3D%22%2FmesBlastBlockMessageType.xsd%22%2F%3E%3CNS1%3Aoutput+path%3D%22%2FBlastblock.xsd%22%2F%3E%3CNS1%3Ageneration+engine%3D%22xquery%22%2F%3E%3CNS1%3AmappingDeclaration+name%3D%22MD_mesBlastBlockMessageType_To_Blastblock_Submap%22%3E%3CNS1%3Ainput+namespace%3D%22http%3A%2F%2Fbhpbilliton.net%2Fservices%22+path%3D%22type%28%26apos%3BmesBlastBlockMessageType%26apos%3B%29%22%2F%3E%3CNS1%3Aoutput+namespace%3D%22http%3A%2F%2Fbhpbilliton.net%2Fservices%22+path%3D%22type%28%26apos%3BBlastblock%26apos%3B%29%22%2F%3E%3C%2FNS1%3AmappingDeclaration%3E%3C%2FNS1%3AmappingRoot%3E"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <parameters xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingRoot" iD="1409646430865-149">
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="xmlns:NS1" iD="1409646430867-169" value="http://www.ibm.com/2008/ccl/Mapping"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="version" iD="1409646430867-168" value="8.0.4.0"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="targetNamespace" iD="1409646430867-167" value="default"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="mainMap" iD="1409646430867-166" value="false"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainIDExtension" iD="1409646430867-165" value="mb"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainID" iD="1409646430867-164" value="com.ibm.msl.mapping.xml"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409646430866-150">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409646430866-151" value="/mesBlastBlockMessageType.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409646430866-152">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409646430866-153" value="/Blastblock.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:generation" iD="1409646430866-154">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="engine" iD="1409646430866-155" value="xquery"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingDeclaration" iD="1409646430866-156">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="name" iD="1409646430867-163" value="MD_mesBlastBlockMessageType_To_Blastblock_Submap"/>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409646430866-157">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409646430867-159" value="type('mesBlastBlockMessageType')"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409646430867-158" value="http://bhpbilliton.net/services"/>
+          </elements>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409646430867-160">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409646430867-162" value="type('Blastblock')"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409646430867-161" value="http://bhpbilliton.net/services"/>
+          </elements>
+        </elements>
+      </parameters>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409646430867-170" applicationIdData="                                " applicationOriginData="    " characterSet="819" encoding="273" format="        " persistence="0" priority="0" putApplicationName="                            " putDateTime="Tue Sep 02 18:27:06 EST 2014" replyToQueueManagerName="IB9QMGR                                         " replyToQueueName="                                                " userId="            " msgId="AMQ+IB9QMGR+++++%14W%05T+%00%3B%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQQueueMonitorEvent>
+  <mq:MQInformationEvent name="Message sent to MQ Queue &quot;IN.Q&quot;" iD="1409646482145-175" host="localhost" port="2414" queueManager="IB9QMGR" queue="IN.Q" readOnly="true" clientID="1409627890621-0" parentID="1409627896142-5" timestamp="1409646482145">
+    <message xsi:type="model2:TestMessage" iD="1409627896142-6" header="/0/@scopes.0/@messageHeaders.0">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="MD_mesBlastBlockMessageType_To_Blastblock_Submap%2Csubmap%2CmesBlastBlockMessageType%2Chttp%3A%2F%2Fbhpbilliton.net%2Fservices%2CBlastblock%2Chttp%3A%2F%2FMQ2BlastblockNotificationPublisher%2FBlastblockCMM%2C%2FMM_IM_MQ2_pub%0D%0A"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409646482154-177" characterSet="819" encoding="273" format="        " putDateTime="Tue Sep 02 18:28:02 EST 2014" msgId="AMQ+IB9QMGR+++++%14W%05T+%00%3C%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQInformationEvent>
+  <mq:MQQueueMonitorEvent name="MQ Queue Monitor &quot;OUT.Q&quot;" iD="1409646486269-178" host="localhost" port="2414" queueManager="IB9QMGR" queue="OUT.Q" readOnly="true" clientID="1409627890621-0" parentID="1409629665867-17" timestamp="1409646486269">
+    <message xsi:type="model2:TestMessage" iD="1409646486269-179">
+      <properties name="messageSource" stringValue="sourceView"/>
+      <properties name="plainText" stringValue="%3CNS1%3AmappingRoot+xmlns%3ANS1%3D%22http%3A%2F%2Fwww.ibm.com%2F2008%2Fccl%2FMapping%22+domainID%3D%22com.ibm.msl.mapping.xml%22+domainIDExtension%3D%22mb%22+mainMap%3D%22false%22+targetNamespace%3D%22default%22+version%3D%228.0.4.0%22%3E%3CNS1%3Ainput+path%3D%22%2FmesBlastBlockMessageType.xsd%22%2F%3E%3CNS1%3Aoutput+path%3D%22%2FBlastblock.xsd%22%2F%3E%3CNS1%3Ageneration+engine%3D%22xquery%22%2F%3E%3CNS1%3AmappingDeclaration+name%3D%22MD_mesBlastBlockMessageType_To_Blastblock_Submap%22%3E%3CNS1%3Ainput+namespace%3D%22http%3A%2F%2Fbhpbilliton.net%2Fservices%22+path%3D%22type%28%26apos%3BmesBlastBlockMessageType%26apos%3B%29%22%2F%3E%3CNS1%3Aoutput+namespace%3D%22http%3A%2F%2FMQ2BlastblockNotificationPublisher%2FBlastblockCMM%22+path%3D%22type%28%26apos%3BBlastblock%26apos%3B%29%22%2F%3E%3C%2FNS1%3AmappingDeclaration%3E%3C%2FNS1%3AmappingRoot%3E"/>
+      <properties name="SHOW_HEX_VIEW"/>
+      <properties name="linkedFile"/>
+      <parameters xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingRoot" iD="1409646486275-180">
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="xmlns:NS1" iD="1409646486276-200" value="http://www.ibm.com/2008/ccl/Mapping"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="version" iD="1409646486276-199" value="8.0.4.0"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="targetNamespace" iD="1409646486276-198" value="default"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="mainMap" iD="1409646486276-197" value="false"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainIDExtension" iD="1409646486276-196" value="mb"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="domainID" iD="1409646486276-195" value="com.ibm.msl.mapping.xml"/>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409646486275-181">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409646486275-182" value="/mesBlastBlockMessageType.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409646486275-183">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409646486275-184" value="/Blastblock.xsd"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:generation" iD="1409646486275-185">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="engine" iD="1409646486276-186" value="xquery"/>
+        </elements>
+        <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:mappingDeclaration" iD="1409646486276-187">
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="name" iD="1409646486276-194" value="MD_mesBlastBlockMessageType_To_Blastblock_Submap"/>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:input" iD="1409646486276-188">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409646486276-190" value="type('mesBlastBlockMessageType')"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409646486276-189" value="http://bhpbilliton.net/services"/>
+          </elements>
+          <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueStructure" name="NS1:output" iD="1409646486276-191">
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="path" iD="1409646486276-193" value="type('Blastblock')"/>
+            <elements xsi:type="com.ibm.wbit.comptest.common.models.value:ValueField" name="namespace" iD="1409646486276-192" value="http://MQ2BlastblockNotificationPublisher/BlastblockCMM"/>
+          </elements>
+        </elements>
+      </parameters>
+      <headerBeenUsed xsi:type="mq:MQHeader" iD="1409646486276-201" applicationIdData="                                " applicationOriginData="    " characterSet="819" encoding="273" format="        " persistence="0" priority="0" putApplicationName="                            " putDateTime="Tue Sep 02 18:28:02 EST 2014" replyToQueueManagerName="IB9QMGR                                         " replyToQueueName="                                                " userId="            " msgId="AMQ+IB9QMGR+++++%14W%05T+%00%3C%02" correlId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" accountingToken="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00" groupId="%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00%00">
+        <rfh2>
+          <jms/>
+          <mcd/>
+          <usr/>
+        </rfh2>
+      </headerBeenUsed>
+    </message>
+  </mq:MQQueueMonitorEvent>
+</xmi:XMI>

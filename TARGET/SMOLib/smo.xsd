@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@start_restricted_prolog@                                              
+Licensed Materials - Property of IBM                                   
+5724-I82 5724-L01 5655-N53 5655-R15 5724-I66                           
+Copyright IBM Corporation 2005, 2008 All Rights Reserved.                    
+US Government Users Restricted Rights- Use, duplication or disclosure  
+restricted by GSA ADP Schedule Contract with IBM Corp.                 
+@end_restricted_prolog@                                                
+-->
+
+
+<!-- 
+ * This schema file is used by the BOMap and XSLT editors (and possibly elsewhere)
+ *
+ * Change activity:
+ *
+ * Reason            Date   Origin   Description
+ * ===============   ====== =======  =========================================
+ * F249511.16.01     050916 mrudge   genesis
+ * 316455            051027 mrudge   schema rebase & namespace updates
+ * 326317            051124 mrudge   Change minOccurs on failInfo predecessor
+ * 345625            060216 wooda    minOcurrs="0" on JMSCorrelationID
+ * Borazon           060508 mrudge   MQ Support, Next.endpoint, property type
+ * 389112.4          061009 kalus    change dynamic endpoint address element names
+ * 380738            061009 kalus    make JMSHeader fields optional, not mandatory
+ * LI351SMO          070425 kalus    Retry, Aggregation and HTTP Header support
+ * LI631SMO          070523 kalus    Remove unwanted additions for Retry and Aggregation
+ * 442164            070527 markesc  Updated SIBX.core.tools copy from SIBX.smobo copy
+ * 490710            080107 ajborley HTTP bindings DCR002
+ * 490900            080123 ajborley Remove all types to improve maintainability - point at smo-envelope.xsd instead
+ * 6.2_SMO_I4_2      080926 kalus    remaining 6.2 changes for Line Items 709, 722
+ * SMO_V7_I4         090911 kalus    Add WTX context and extended SOAP Fault Info
+-->
+
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+    xmlns:sdoXML="commonj.sdo/xml"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:smo="http://www.ibm.com/websphere/sibx/smo/v6.0.1"
+    xmlns:mq="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0" 
+    xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+    xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+    xmlns:httpsca="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"
+    xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+    targetNamespace="http://www.ibm.com/websphere/sibx/smo/v6.0.1">
+    
+	<include schemaLocation="smo-envelope.xsd"/>   
+</schema>

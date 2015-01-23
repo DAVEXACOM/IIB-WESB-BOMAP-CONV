@@ -1,0 +1,651 @@
+<?xml version="1.0" encoding="utf-8"?>
+<capture:plugins>
+    <modelVersion>1.0.0.0</modelVersion>
+    <plugin pluginLocale="en-AU" pluginPath="com/ibm/ObjectAssociation" pluginRootRelativePath="/" pluginRootAbsolutePath="C:/WESBCONVERT/CONVERTER3/" pluginName="com.ibm.ObjectAssociation" docPluginName="com.ibm.ObjectAssociation.doc" nlsPluginName="com.ibm.ObjectAssociation.nl1" nlsDocPluginName="com.ibm.ObjectAssociation.doc.nl1" pluginRelativePath="/com.ibm.ObjectAssociation" pluginAbsolutePath="C:/WESBCONVERT/CONVERTER3/com.ibm.ObjectAssociation" docRelativePath="/com.ibm.ObjectAssociation.doc" docAbsolutePath="C:/WESBCONVERT/CONVERTER3/com.ibm.ObjectAssociation.doc" nlsRelativePath="/com.ibm.ObjectAssociation.nl1" nlsAbsolutePath="C:/WESBCONVERT/CONVERTER3/com.ibm.ObjectAssociation.nl1" nlsDocRelativePath="/com.ibm.ObjectAssociation.doc.nl1" nlsDocAbsolutePath="C:/WESBCONVERT/CONVERTER3/com.ibm.ObjectAssociation.doc.nl1">
+        <pluginId>Id148670fa0d2bf751bb93051fce6</pluginId>
+        <displayName>Pattern Plug-in</displayName>
+        <package>com.ibm.ObjectAssociation</package>
+        <description>Plug-in for Assocaiting Map Files with Flow Map Nodes</description>
+        <version>1.0.0.1</version>
+        <provider>IBM</provider>
+        <categories/>
+        <patterns>
+            <pattern patternKey="com_ibm_ObjectAssociation_pattern" patternPath="com/ibm/ObjectAssociation/pattern" resourcesPath=".." patternTemplatePath="pattern" patternRelativePath="/com.ibm.ObjectAssociation" patternAbsolutePath="C:/WESBCONVERT/CONVERTER3/com.ibm.ObjectAssociation">
+                <patternId>Id148670fa0d591b58f8e9fa894b2</patternId>
+                <package>com.ibm.ObjectAssociation.pattern</package>
+                <parentPackage>com.ibm.etools.pattern</parentPackage>
+                <templatePackage>pattern</templatePackage>
+                <displayName>AssociateObjects</displayName>
+                <schema/>
+                <referencedProjects/>
+                <groups>
+                    <group documentationRequired="true" tableRequired="true">
+                        <groupId>Id14868699f59270f17df9e47847b</groupId>
+                        <displayName>Flow Object Search Configuration</displayName>
+                        <generateDocumentation>true</generateDocumentation>
+                        <description>Pattern Parameters</description>
+                        <expand>false</expand>
+                        <visible>true</visible>
+                        <parameters>
+                            <parameter>
+                                <parameterId>pp1</parameterId>
+                                <referenceId>Id1486869e59992ed4b0796789829</referenceId>
+                                <defaultTranslated>false</defaultTranslated>
+                                <displayName>Object Type</displayName>
+                                <default>5061747465726E73216D6170</default>
+                                <waterMark>Select the object type to search</waterMark>
+                                <mandatory>true</mandatory>
+                                <configurable>true</configurable>
+                                <visible>true</visible>
+                                <expression></expression>
+                                <parameterTargets/>
+                                <schema>
+                                    <maxOccurs>1</maxOccurs>
+                                    <minOccurs>1</minOccurs>
+                                    <type>Id14867788d1d18dee1f67e3065c</type>
+                                </schema>
+                                <helpText>&lt;p&gt;The flow object type which we have to look for in the project and use to update the flows. Currently only Map is supported&lt;/p&gt;</helpText>
+                                <continuation>false</continuation>
+                            </parameter>
+                        </parameters>
+                    </group>
+                </groups>
+                <messages/>
+                <patternExtensions>
+                    <packageExtensions/>
+                    <generateExtensions>
+                        <generateExtension>
+                            <extensionId>Id148677ae1bc1f0aba96f8025fd</extensionId>
+                            <extensionClass>com.ibm.etools.mft.pattern.support.java.JavaPatternInstanceTransform</extensionClass>
+                            <extensionConfiguration>
+                                <configuration>
+                                    <key>class</key>
+                                    <value>com.ibm.ObjectAssociation.code.RunAssociation</value>
+                                </configuration>
+                                <configuration>
+                                    <key>pluginId</key>
+                                    <value>com.ibm.ObjectAssociation.code</value>
+                                </configuration>
+                                <configuration>
+                                    <key>relativePath</key>
+                                    <value></value>
+                                </configuration>
+                                <configuration>
+                                    <key>projectName</key>
+                                    <value></value>
+                                </configuration>
+                                <configuration>
+                                    <key>outputPath</key>
+                                    <value></value>
+                                </configuration>
+                            </extensionConfiguration>
+                        </generateExtension>
+                    </generateExtensions>
+                </patternExtensions>
+                <patternLists>
+                    <patternList>
+                        <listId>Id148671b19c6cfb38f607b03c75c</listId>
+                        <displayName>Parser xmlnsc mixed content retain mode</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6f41638ae476548ae</listItemId>
+                                <displayName>None</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6933bfdfac7b5121</listItemId>
+                                <displayName>All</displayName>
+                                <value>5061747465726E7321616C6C</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6d7434c3cb0d3e977</listItemId>
+                                <displayName>None</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6cb3011d3d7ff8de</listItemId>
+                                <displayName>All</displayName>
+                                <value>5061747465726E7321616C6C</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c6b2c88e1bd52b890e</listId>
+                        <displayName>Identity type</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6ca387a293e1239e7</listItemId>
+                                <displayName>Transport Default</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c67c89f2c18b61b84</listItemId>
+                                <displayName>Username</displayName>
+                                <value>5061747465726E7321757365726E616D65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c653dd630807a0a4df</listItemId>
+                                <displayName>Username + Password</displayName>
+                                <value>5061747465726E7321757365726E616D65416E6450617373776F7264</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c61f4f9bea5f248c6</listItemId>
+                                <displayName>X.509 Certificate</displayName>
+                                <value>5061747465726E7321582E353039</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6b553ab446affa364</listItemId>
+                                <displayName>SAML Assertion</displayName>
+                                <value>5061747465726E732153414D4C</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c61c4595ce13e46bca</listItemId>
+                                <displayName>Transport Default</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c64c5ebc8276210f2c</listItemId>
+                                <displayName>Username</displayName>
+                                <value>5061747465726E7321757365726E616D65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6a7e63bb7da2fa976</listItemId>
+                                <displayName>Username + Password</displayName>
+                                <value>5061747465726E7321757365726E616D65416E6450617373776F7264</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c69c3d0a62296ad639</listItemId>
+                                <displayName>X.509 Certificate</displayName>
+                                <value>5061747465726E7321582E353039</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6950632ebf5dd95ff</listItemId>
+                                <displayName>SAML Assertion</displayName>
+                                <value>5061747465726E732153414D4C</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c67e8340855b52f172</listId>
+                        <displayName>Validate master</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6532ab09226b83af</listItemId>
+                                <displayName>None</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6cbb0ed38d4f4d5cd</listItemId>
+                                <displayName>Content and Value</displayName>
+                                <value>5061747465726E7321636F6E74656E74416E6456616C7565</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6d298733fc9851a5f</listItemId>
+                                <displayName>Content</displayName>
+                                <value>5061747465726E7321636F6E74656E74</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6aec2dbf5157f8b7b</listItemId>
+                                <displayName>None</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6b6805f4a931a80e2</listItemId>
+                                <displayName>Content and Value</displayName>
+                                <value>5061747465726E7321636F6E74656E74416E6456616C7565</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c642d6d9f4c0021a3</listItemId>
+                                <displayName>Content</displayName>
+                                <value>5061747465726E7321636F6E74656E74</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c68b907313d6cc3182</listId>
+                        <displayName>Parser xmlnsc processing instructions retain mode</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6f084b0fa3dc1e8b0</listItemId>
+                                <displayName>None</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6c348816878d0b6d5</listItemId>
+                                <displayName>All</displayName>
+                                <value>5061747465726E7321616C6C</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c67459527fbfa289ad</listItemId>
+                                <displayName>None</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c64058198e5ddfeca6</listItemId>
+                                <displayName>All</displayName>
+                                <value>5061747465726E7321616C6C</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c6fec75fcd98173cc4</listId>
+                        <displayName>Order mode</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6a2b4de25eda0d0d3</listItemId>
+                                <displayName>Default</displayName>
+                                <value>5061747465726E732164656661756C74</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6306a194a6a17eb7e</listItemId>
+                                <displayName>By User ID</displayName>
+                                <value>5061747465726E73216279557365724964</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6d410f6fc0a5c0475</listItemId>
+                                <displayName>By Queue Order</displayName>
+                                <value>5061747465726E7321627951756575654F72646572</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c636161456a667d5de</listItemId>
+                                <displayName>User Defined</displayName>
+                                <value>5061747465726E732175736572446566696E6564</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6db3fc60ebb80da1b</listItemId>
+                                <displayName>Default</displayName>
+                                <value>5061747465726E732164656661756C74</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6f97ddedf4a70485e</listItemId>
+                                <displayName>By User ID</displayName>
+                                <value>5061747465726E73216279557365724964</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c68560f76dd1c6b750</listItemId>
+                                <displayName>By Queue Order</displayName>
+                                <value>5061747465726E7321627951756575654F72646572</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6d3aafb8ec573292c</listItemId>
+                                <displayName>User Defined</displayName>
+                                <value>5061747465726E732175736572446566696E6564</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c616f0887ee5bc27f</listId>
+                        <displayName>Message domain</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c64d147250b163c3bc</listItemId>
+                                <displayName>DFDL : For binary or text messages with a Data Format Description Language schema model</displayName>
+                                <value>5061747465726E73214446444C</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6d11ba5c7c0b862db</listItemId>
+                                <displayName>XMLNSC : For XML messages (namespace aware, validation, low memory use)</displayName>
+                                <value>5061747465726E7321584D4C4E5343</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6a83dbd231e901f6b</listItemId>
+                                <displayName>DataObject : For data from WebSphere Adapters, CORBA and Database records</displayName>
+                                <value>5061747465726E7321446174614F626A656374</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6bd67d70286710dd6</listItemId>
+                                <displayName>JSON : For JavaScript Object Notation messages</displayName>
+                                <value>5061747465726E73214A534F4E</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6cb2e8cd139c8e1c</listItemId>
+                                <displayName>BLOB : For messages with an unspecified format</displayName>
+                                <value>5061747465726E7321424C4F42</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c63bd5d8fd09af17ee</listItemId>
+                                <displayName>MIME : For MIME wrapped data including multipart</displayName>
+                                <value>5061747465726E73214D494D45</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6c08db8eebb4c120c</listItemId>
+                                <displayName>MRM : For binary or text messages that are modeled in a message set</displayName>
+                                <value>5061747465726E73214D524D</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c649ae1e0ea5a2eae9</listItemId>
+                                <displayName>JMSMap : For JMS MapMessage messages (XML)</displayName>
+                                <value>5061747465726E73214A4D534D6170</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6f68dc6ee2465deb4</listItemId>
+                                <displayName>JMSStream : For JMS StreamMessage messages (XML)</displayName>
+                                <value>5061747465726E73214A4D5353747265616D</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c65e05888199cb8b84</listItemId>
+                                <displayName>XMLNS : For XML messages (namespace aware)</displayName>
+                                <value>5061747465726E7321584D4C4E53</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c61a82fc4cbe00c2fc</listItemId>
+                                <displayName>DFDL : For binary or text messages with a Data Format Description Language schema model</displayName>
+                                <value>5061747465726E73214446444C</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c65ba4b9be79a3f60</listItemId>
+                                <displayName>XMLNSC : For XML messages (namespace aware, validation, low memory use)</displayName>
+                                <value>5061747465726E7321584D4C4E5343</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c688b0bf712f0dca35</listItemId>
+                                <displayName>DataObject : For data from WebSphere Adapters, CORBA and Database records</displayName>
+                                <value>5061747465726E7321446174614F626A656374</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6550a19cdb9d96325</listItemId>
+                                <displayName>JSON : For JavaScript Object Notation messages</displayName>
+                                <value>5061747465726E73214A534F4E</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c64ccbc2694c3847fb</listItemId>
+                                <displayName>BLOB : For messages with an unspecified format</displayName>
+                                <value>5061747465726E7321424C4F42</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6a4ef46f9b0fd16e2</listItemId>
+                                <displayName>MIME : For MIME wrapped data including multipart</displayName>
+                                <value>5061747465726E73214D494D45</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c62184795fdfded30f</listItemId>
+                                <displayName>MRM : For binary or text messages that are modeled in a message set</displayName>
+                                <value>5061747465726E73214D524D</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6c747e6c3bcc32d45</listItemId>
+                                <displayName>JMSMap : For JMS MapMessage messages (XML)</displayName>
+                                <value>5061747465726E73214A4D534D6170</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c675fc56f7f0bb4f1b</listItemId>
+                                <displayName>JMSStream : For JMS StreamMessage messages (XML)</displayName>
+                                <value>5061747465726E73214A4D5353747265616D</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c678afe95251e5b709</listItemId>
+                                <displayName>XMLNS : For XML messages (namespace aware)</displayName>
+                                <value>5061747465726E7321584D4C4E53</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c6be165647566e0ab1</listId>
+                        <displayName>Transaction mode</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6ae4ddad31cf683db</listItemId>
+                                <displayName>Automatic</displayName>
+                                <value>5061747465726E73216175746F6D61746963</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6537b9bb8b1945f74</listItemId>
+                                <displayName>Yes</displayName>
+                                <value>5061747465726E7321796573</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6dd9c055b12415507</listItemId>
+                                <displayName>No</displayName>
+                                <value>5061747465726E73216E6F</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c61080aaa0e7329d42</listItemId>
+                                <displayName>Automatic</displayName>
+                                <value>5061747465726E73216175746F6D61746963</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6c3550fedc89bf612</listItemId>
+                                <displayName>Yes</displayName>
+                                <value>5061747465726E7321796573</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6cba019f8eae2efdd</listItemId>
+                                <displayName>No</displayName>
+                                <value>5061747465726E73216E6F</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c6d6e2e276c317e53f</listId>
+                        <displayName>Validate timing</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c62344bbc3737f797f</listItemId>
+                                <displayName>On Demand</displayName>
+                                <value>5061747465726E73216465666572726564</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6b2bd4ba54337473f</listItemId>
+                                <displayName>Immediate</displayName>
+                                <value>5061747465726E7321696D6D656469617465</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c632bbac331cf04438</listItemId>
+                                <displayName>Complete</displayName>
+                                <value>5061747465726E7321636F6D706C657465</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6c3830dda1445972b</listItemId>
+                                <displayName>On Demand</displayName>
+                                <value>5061747465726E73216465666572726564</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c678e8de4d3e12c300</listItemId>
+                                <displayName>Immediate</displayName>
+                                <value>5061747465726E7321696D6D656469617465</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c653162d40d94f43d7</listItemId>
+                                <displayName>Complete</displayName>
+                                <value>5061747465726E7321636F6D706C657465</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c6242284df22dc7369</listId>
+                        <displayName>Parser xmlnsc comments retain mode</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c64f15c412f6c68da2</listItemId>
+                                <displayName>None</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c649b0229818ac8966</listItemId>
+                                <displayName>All</displayName>
+                                <value>5061747465726E7321616C6C</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c69a840eb3e3e251ed</listItemId>
+                                <displayName>None</displayName>
+                                <value>5061747465726E73216E6F6E65</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c65e5a173233db2291</listItemId>
+                                <displayName>All</displayName>
+                                <value>5061747465726E7321616C6C</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c68c2f8abcb6b5d6c9</listId>
+                        <displayName>Validate failure action</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6996439746acf559e</listItemId>
+                                <displayName>User Trace</displayName>
+                                <value>5061747465726E7321757365725472616365</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c69639be64777e6a53</listItemId>
+                                <displayName>Local Error Log</displayName>
+                                <value>5061747465726E73216C6F63616C4572726F72</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c69593aa3b54ad4820</listItemId>
+                                <displayName>Exception</displayName>
+                                <value>5061747465726E7321657863657074696F6E</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6a52c83e875af033e</listItemId>
+                                <displayName>Exception List</displayName>
+                                <value>5061747465726E7321657863657074696F6E4C697374</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6d8a87c67ef8b5511</listItemId>
+                                <displayName>User Trace</displayName>
+                                <value>5061747465726E7321757365725472616365</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c666d83e072e094ca0</listItemId>
+                                <displayName>Local Error Log</displayName>
+                                <value>5061747465726E73216C6F63616C4572726F72</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6a20ef99402dd7faa</listItemId>
+                                <displayName>Exception</displayName>
+                                <value>5061747465726E7321657863657074696F6E</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c634989f49d60838cc</listItemId>
+                                <displayName>Exception List</displayName>
+                                <value>5061747465726E7321657863657074696F6E4C697374</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id148671b19c669eabd2d540e591b</listId>
+                        <displayName>Component level</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c66dfcb6032f668c9b</listItemId>
+                                <displayName>Use Pool Associated with Message Flow</displayName>
+                                <value>5061747465726E7321666C6F77</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6590675528d00f568</listItemId>
+                                <displayName>Use Pool Associated with Node</displayName>
+                                <value>5061747465726E73216E6F6465</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems>
+                            <patternListItem>
+                                <listItemId>Id148671b19c6b3e199913292809e</listItemId>
+                                <displayName>Use Pool Associated with Message Flow</displayName>
+                                <value>5061747465726E7321666C6F77</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id148671b19c62bee2bdb360c1699</listItemId>
+                                <displayName>Use Pool Associated with Node</displayName>
+                                <value>5061747465726E73216E6F6465</value>
+                            </patternListItem>
+                        </systemListItems>
+                    </patternList>
+                    <patternList>
+                        <listId>Id14867788d1d18dee1f67e3065c</listId>
+                        <displayName>ProjectObjectTypes</displayName>
+                        <systemList>false</systemList>
+                        <patternListItems>
+                            <patternListItem>
+                                <listItemId>Id14867788d1d669bfd95b8b7615f</listItemId>
+                                <displayName>Map</displayName>
+                                <value>5061747465726E73216D6170</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id1486778dbba3cdd561805760d2b</listItemId>
+                                <displayName>ESQL</displayName>
+                                <value>5061747465726E73216573716C</value>
+                            </patternListItem>
+                            <patternListItem>
+                                <listItemId>Id1486638856d7b26a3871116398b</listItemId>
+                                <displayName>JAVA</displayName>
+                                <value>5061747465726E73216A617661</value>
+                            </patternListItem>
+                        </patternListItems>
+                        <systemListItems/>
+                    </patternList>
+                </patternLists>
+                <specification>
+                    <projectName>ObjectAssociation</projectName>
+                    <relativePath>Pattern Specification</relativePath>
+                    <folders>
+                        <folder>
+                            <folderName>root</folderName>
+                            <relativePath></relativePath>
+                            <enabled>true</enabled>
+                            <files>
+                                <file>
+                                    <fileName>overview.htm</fileName>
+                                    <relativePath>overview.htm</relativePath>
+                                    <enabled>true</enabled>
+                                    <targets/>
+                                </file>
+                            </files>
+                            <folders>
+                                <folder>
+                                    <folderName>css</folderName>
+                                    <relativePath>css</relativePath>
+                                    <enabled>true</enabled>
+                                    <files>
+                                        <file>
+                                            <fileName>pattern.css</fileName>
+                                            <relativePath>css/pattern.css</relativePath>
+                                            <enabled>true</enabled>
+                                            <targets/>
+                                        </file>
+                                    </files>
+                                    <folders/>
+                                </folder>
+                            </folders>
+                        </folder>
+                    </folders>
+                </specification>
+                <patternTables/>
+            </pattern>
+        </patterns>
+        <buildOptions>
+            <createTranslationPlugins>false</createTranslationPlugins>
+        </buildOptions>
+    </plugin>
+</capture:plugins>

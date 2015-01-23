@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><mappingRoot domainID="com.ibm.msl.mapping.xml" domainIDExtension="mb" mainMap="false" targetNamespace="default" version="8.0.4.0" xmlns="http://www.ibm.com/2008/ccl/Mapping" xmlns:map="default">
+    <input path="/Input_Model.xsd"/>
+    <output path="/Output_Model.xsd"/>
+    <generation engine="xquery"/>
+    <mappingDeclaration name="Input_To_Output_Model_Submap">
+        <input namespace="http://www.da.com/modelSchema" path="inmodel"/>
+        <output namespace="http://www.da.com/modelSchema" path="outmodel"/>
+    </mappingDeclaration>
+</mappingRoot>

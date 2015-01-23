@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	@start_restricted_prolog@
+	Licensed Materials - Property of IBM
+	
+	5724-I82 5724-L01 5655-N53 5655-R15            
+	Copyright IBM Corporation 2005, 2010 All Rights Reserved.
+	US Government Users Restricted Rights- Use, duplication or disclosure
+	restricted by GSA ADP Schedule Contract with IBM Corp.
+	@end_restricted_prolog@
+-->
+<!-- 
+If any changes are made to this schema they need to be shadowed to the tooling plugin ... the tooling
+already includes the change of 326317.
+
+ *
+ * Change activity:
+ *
+ * Reason            Date   Origin   Description
+ * ===============   ====== =======  =========================================
+ * F249511.16.01     050916 mrudge   genesis
+ * 316455            051027 mrudge   schema rebase & namespace updates
+ * 326317            051124 mrudge   Change minOccurs on failInfo predecessor
+ * 345625            060216 wooda    minOcurrs="0" on JMSCorrelationID
+ * Borazon           060508 mrudge   MQ Support, Next.endpoint, property type
+ * 389112.4          061009 kalus    change dynamic endpoint address element names
+ * 380738            061009 kalus    make JMSHeader fields optional, not mandatory
+ * LI351SMO          070425 kalus    Retry, Aggregation and HTTP Header support
+ * LI631SMO          070523 kalus    Remove unwanted additions for Retry and Aggregation
+ * SMOEMF22          070605 kalus    Use EMF 2.2 to generate the smobo model code
+ * 445597.1          070614 kalus    HTTP bindings DCR002
+ * 468790            071108 kalus    Use a local copy of xml.xsd
+ * 6.2_SMO_I3_1      080708 kalus    6.2 changes for Line Items 747, 774, 777, 712, 722
+ * 6.2_SMO_I4_1      080728 kalus    6.2 changes for Line Items 777 and 712
+ * LI777.I4.1        080807 prmf     Change isPersisted to isPropagated in DynamicContext
+ * 6.2_SMO_I4_3      080826 kalus    Add WS Addressing header to SMO for LI779
+ * 6.2_SMO_I4_5      080904 kalus    Add top-level ContextObject
+ * 548981            081016 kalus    Change SMOHeader BindingType to SourceBindingType
+ * LI1606.1          090224 kalus    Add attachments
+ * LI1690_SMO_1      090416 kalus    Add repositoryMetadata to TargetAddressType
+ * SMO_V7_I4         090911 kalus    Add WTX context and extended SOAP Fault Info
+ * 649692            100806 nortonp  Update schema
+ * 663709            100811 wooda    Remove erroneous sdoJava attribute.
+ * 669624            100915 kalus    Remove duplicate definition of BindingTypeType
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+		xmlns:sdoXML="commonj.sdo/xml" 
+		xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+		xmlns:smo="http://www.ibm.com/websphere/sibx/smo/v6.0.1"
+		xmlns:mq="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"
+		xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing"
+		xmlns:wsa10="http://www.w3.org/2005/08/addressing"
+		xmlns:httpsca="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"
+		xmlns:soapenv="http://www.w3.org/2003/05/soap-envelope"
+
+		targetNamespace="http://www.ibm.com/websphere/sibx/smo/v6.0.1">
+
+    <import namespace="http://www.w3.org/XML/1998/namespace"  
+            schemaLocation="xml.xsd" />
+
+    <import namespace="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0" 
+            schemaLocation="smo-mq.xsd" />
+
+    <import namespace="http://schemas.xmlsoap.org/ws/2004/08/addressing" 
+            schemaLocation="ws-addressing2004.xsd" />
+
+    <import namespace="http://www.w3.org/2005/08/addressing"
+            schemaLocation="ws-addr-10.xsd"/>
+
+    <import namespace="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0" 
+            schemaLocation="smo-http.xsd" />
+
+    <import namespace="http://www.w3.org/2003/05/soap-envelope" 
+            schemaLocation="soap-envelope.xsd" />
+
+
+	<!-- ContextType - container for the individual context elements. -->
+	<complexType name="ContextType">
+		<sequence>
+			<element minOccurs="0" name="correlation" type="anyType"/>
+			<element minOccurs="0" name="transient" type="anyType"/>
+			<element minOccurs="0" name="failInfo" type="smo:FailInfoType"/>
+			<element maxOccurs="1" minOccurs="0" name="primitiveContext" type="smo:PrimitiveContextType"/>
+			<element minOccurs="0" name="shared" type="anyType"/>
+			<element minOccurs="0" name="dynamicProperty" type="smo:DynamicPropertyContextType"/>
+			<element minOccurs="0" name="userContext" type="smo:UserContextType"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="HeadersType">
+		<sequence>
+			<element minOccurs="0" name="SMOHeader" type="smo:SMOHeaderType"/>
+			<element minOccurs="0" name="JMSHeader" type="smo:JMSHeaderType"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="SOAPHeader" type="smo:SOAPHeaderType"/>
+			<element minOccurs="0" name="SOAPFaultInfo" type="smo:SOAPFaultInfoType"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="properties" type="smo:PropertyType"/>
+			<element minOccurs="0" name="MQHeader" type="smo:MQHeaderType"/>
+			<element minOccurs="0" name="HTTPHeader" type="smo:HTTPHeaderType"/>
+			<element minOccurs="0" name="EISHeader" type="smo:EISHeaderType"/>
+			<element minOccurs="0" name="WSAHeader" type="smo:WSAHeaderType"/>
+		</sequence>
+	</complexType>
+	
+	<!-- AttachmentType - container for an individual attachment. -->
+	<complexType name="AttachmentType">
+    	<sequence>
+      		<element name="contentID" type="anyURI"/>
+      		<element name="contentType" type="token"/>
+      		<choice>
+        		<element name="data" type="base64Binary"/>
+        		<element name="bodyPath" type="string"/>
+      		</choice>
+    	</sequence>
+  	</complexType>
+
+	<!-- EMF 2.0 generated MessageType as a string, rather than an enumeration,
+	     EMF 2.2 generated it as an enumeration. For compatibility, the schema
+	     has been changed to make it a string.
+	-->
+	<complexType name="SMOHeaderType">
+		<sequence>
+			<element minOccurs="1" name="MessageUUID" type="string"/>
+			<element minOccurs="1" name="Version" type="smo:VersionType"/>
+			<element minOccurs="0" name="MessageType" type="string"/>
+			<element minOccurs="0" name="Operation" type="string"/>
+			<element minOccurs="0" name="Action" type="string"/>
+			<element minOccurs="0" name="Target" type="smo:TargetAddressType"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="AlternateTarget" type="smo:TargetAddressType"/>
+			<element minOccurs="0" name="SourceNode" type="string"/>
+			<element minOccurs="0" name="SourceBindingType" type="smo:BindingTypeType"/>
+			<element minOccurs="0" name="Interface" type="string"/>
+		</sequence>
+	</complexType>
+
+	<simpleType name="BindingTypeType">
+		<restriction base="string">
+			<enumeration value="NotSet"/>
+			<enumeration value="JMS"/>
+			<enumeration value="MQJMS"/>
+			<enumeration value="GenericJMS"/>
+			<enumeration value="MQ"/>
+			<enumeration value="WebService"/>
+			<enumeration value="HTTP"/>
+			<enumeration value="SCA"/>
+			<enumeration value="EIS"/>
+			<enumeration value="SLSB"/>
+		</restriction>
+	</simpleType>
+	
+
+	<complexType name="SOAPFaultInfoType">
+		<sequence>
+			<element name="faultcode" type="QName"/>
+			<element name="faultstring" type="string"/>
+			<element minOccurs="0" name="faultactor" type="anyURI"/>
+			<element minOccurs="0" name="extendedFaultInfo" type="smo:FaultType"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="FailInfoType">
+		<sequence>
+			<element name="failureString" type="string"/>
+			<element name="origin" type="string"/>
+			<element name="invocationPath">
+				<complexType>
+					<sequence>
+						<element maxOccurs="unbounded" name="primitive" type="smo:PrimitiveType"/>
+					</sequence>
+				</complexType>
+			</element>
+			<element minOccurs="0" name="predecessor" type="smo:FailInfoType"/>
+		</sequence>
+		<attribute ref="xml:lang"/>
+	</complexType>
+
+
+	<complexType name="PrimitiveType">
+		<attribute name="inTerminal" type="string" use="required"/>
+		<attribute name="name" type="string" use="required"/>
+		<attribute name="outTerminal" type="string"/>
+	</complexType>
+
+
+	<complexType name="PropertyType">
+		<sequence>
+			<element name="name" type="string"/>
+			<element name="value" type="anySimpleType"/>
+			<element minOccurs="0" name="type" type="string"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="VersionType">
+		<sequence>
+			<element name="Version" type="integer"/>
+			<element name="Release" type="integer"/>
+			<element name="Modification" type="integer"/>
+		</sequence>
+	</complexType>
+
+
+	<complexType name="TargetAddressType">
+		<sequence>
+			<element name="address" type="anyURI"/>
+		</sequence>
+		<attribute name="import" type="string"/>
+		<attribute name="bindingType" type="smo:BindingTypeType"/>
+        <attribute name="repositoryMetadata" type="string"/>
+	</complexType>
+
+	<complexType name="JMSHeaderType">
+		<sequence>
+			<element minOccurs="0" name="JMSDestination" type="anyURI"/>
+			<element minOccurs="0" name="JMSDeliveryMode" type="smo:persistenceType"/>
+			<element minOccurs="0" name="JMSMessageID" type="string"/>
+			<element minOccurs="0" name="JMSTimestamp" type="long"/>
+			<element minOccurs="0" name="JMSCorrelationID" type="string"/>
+			<element minOccurs="0" name="JMSReplyTo" type="anyURI"/>
+			<element minOccurs="0" name="JMSRedelivered" type="boolean"/>
+			<element minOccurs="0" name="JMSType" type="string"/>
+			<element minOccurs="0" name="JMSExpiration" type="long"/>
+			<element minOccurs="0" name="JMSPriority" type="smo:priorityType"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- SOAPHeader - the container for the individual SOAP headers -->
+	<complexType name="SOAPHeaderType">
+		<sequence>
+			<element name="nameSpace" type="anyURI"/>
+			<element name="name" type="NCName"/>
+			<element minOccurs="0" name="prefix" type="NCName"/>
+			<element name="value" type="anyType"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- Types used in headers. -->
+	<simpleType name="priorityType">
+		<restriction base="integer">
+			<minInclusive value="0"/>
+			<maxInclusive value="9"/>
+		</restriction>
+	</simpleType>
+
+
+	<simpleType name="persistenceType">
+		<restriction base="string">
+			<enumeration value="NonPersistent"/>
+			<enumeration value="Persistent"/>
+		</restriction>
+	</simpleType>
+
+
+	<!-- EMF 2.0 did not generate a class for messageTypeType because it
+         treated messageType as a string. EMF 2.2 did generate a class for
+         it, so for compatibility it has been commented out
+	-->
+	<!--
+	<simpleType name="messageTypeType">
+		<restriction base="string">
+			<enumeration value="Request"/>
+			<enumeration value="Reply"/>
+			<enumeration value="Exception"/>
+			<enumeration value="One-way"/>
+			<enumeration value="User-defined"/>
+		</restriction>
+	</simpleType>
+    -->
+
+	<!-- MQ Header Type -->
+	<complexType name="MQHeaderType">
+		<sequence>
+			<element minOccurs="0" name="md" type="mq:MQMD"/>
+			<element minOccurs="0" name="control" type="mq:MQControl"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="header" type="smo:MQChainedHeaderType"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- MQ Chained Header Type -->
+	<complexType name="MQChainedHeaderType">
+		<complexContent>
+			<extension base="mq:MQControl">
+				<sequence>
+					<choice> <!-- This choice should be extended when other header types become supported. -->
+						<element name="value" type="anyType"/>
+						<element name="opaque" type="mq:MQOpaqueHeader"/>
+						<element name="rfh" type="mq:MQRFH"/>
+						<element name="rfh2" type="mq:MQRFH2"/>
+					</choice>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<!-- UserContextType -->
+	<complexType name="UserContextType">
+		<sequence>
+			<element maxOccurs="unbounded" minOccurs="0" name="entries" type="smo:ComplexPropertyType"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="ComplexPropertyType">
+		<sequence>
+			<element name="name" type="string"/>
+			<element name="value" type="anyType"/>
+			<element minOccurs="0" name="type" type="string"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- PrimitiveContextType -->
+	<complexType name="PrimitiveContextType">
+		<sequence>
+			<element maxOccurs="unbounded" minOccurs="0" name="EndpointLookupContext" type="smo:EndpointLookupContextType"/>
+	  		<element maxOccurs="1" minOccurs="0" name="FanOutContext" type="smo:FanOutContextType"/>
+	  		<element maxOccurs="1" minOccurs="0" name="WTXContext" type="smo:WTXContextType"/>
+		</sequence>
+	</complexType>
+
+	<!-- Start of FaultType -->
+
+	<complexType name="FaultType" final="extension">
+		<sequence>
+			<element name="Code" type="soapenv:faultcode"/>
+			<element name="Reason" type="soapenv:faultreason"/>
+			<element minOccurs="0" name="Node" type="anyURI"/>
+			<element minOccurs="0" name="Role" type="anyURI"/>
+		</sequence>
+	</complexType>
+
+
+	<!-- Start of DynamicPropertyContext and related types -->
+	
+	<complexType name="DynamicPropertyContextType">
+       <sequence>
+    		<element maxOccurs="unbounded" minOccurs="0" name="propertySets" type="smo:DynamicPropertySetType"/>
+       </sequence>
+       <attribute name="isPropagated" type="boolean" />
+	</complexType>
+	
+	<!-- A dynamic property set holds dynamic properties. -->
+	<complexType name="DynamicPropertySetType">
+		<sequence>
+            <element minOccurs="1" name="group" type="string" />
+            <element maxOccurs="unbounded" minOccurs="0" name="properties" type="smo:PropertyType"/>
+		</sequence>
+	</complexType>
+
+	<!-- End of DynamicPropertyContext and related types -->
+	
+	<!-- start of EndpointLookupContextType and related types -->
+	
+	<complexType name="EndpointLookupContextType">
+		<sequence>
+			<element maxOccurs="1" minOccurs="1" name="endpointReference" type="wsa:EndpointReferenceType"/>
+			<element maxOccurs="1" minOccurs="0" name="registryAnnotations" type="smo:RegistryAnnotationsType"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="RegistryAnnotationsType">
+		<sequence>
+			<element maxOccurs="unbounded" minOccurs="0" name="property" type="smo:RegistryPropertyType"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="classification" type="anyURI"/>
+			<element maxOccurs="unbounded" minOccurs="0" name="relationship" type="smo:RegistryRelationshipType"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="RegistryPropertyType">
+		<sequence>
+			<element maxOccurs="1" minOccurs="1" name="name" type="string"/>
+			<element maxOccurs="1" minOccurs="0" name="value" type="string"/>
+		</sequence>
+	</complexType>
+	
+	<complexType name="RegistryRelationshipType">
+		<sequence>
+			<element maxOccurs="1" minOccurs="1" name="relationshipName" type="string"/>
+			<element maxOccurs="1" minOccurs="0" name="targetName" type="string"/>
+			<element maxOccurs="1" minOccurs="0" name="targetNamespace" type="anyURI"/>
+			<element maxOccurs="1" minOccurs="0" name="targetVersion" type="string"/>
+		</sequence>
+	</complexType>
+	
+	<!-- end of EndpointLookupContextType and related types -->
+	
+	<!-- start of FanOutContextType -->
+	
+	<complexType name="FanOutContextType">
+	  <sequence>
+	    <element maxOccurs="1" minOccurs="0" name="iteration" type="integer"/>
+	    <element maxOccurs="1" minOccurs="0" name="occurrence" type="anyType"/>
+	  </sequence>
+	</complexType>
+
+	<!-- end of FanOutContextType -->
+
+	<!-- start of WTXContextType and related types -->
+
+ 	<complexType name="WTXContextType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="0" name="mapServerLocation" type="anyURI"/>
+            <element maxOccurs="1" minOccurs="0" name="dynamicMap" type="hexBinary"/>
+            <element maxOccurs="unbounded" minOccurs="0" name="mapInstances" type="smo:WTXMapInstanceType"/>
+        </sequence>
+    </complexType>
+
+    <complexType name="WTXMapInstanceType">
+        <sequence>
+            <element maxOccurs="1" minOccurs="1" name="mapInstance" type="integer"/>
+            <element maxOccurs="1" minOccurs="1" name="auditInfo" type="string"/>
+        </sequence>
+    </complexType>
+
+	<!-- end of WTXContextType and related types -->
+
+	<!-- start of HTTPHeaderType -->
+
+	<complexType name="HTTPHeaderType">
+	  <sequence>
+	    <element name="control" minOccurs="0" type="httpsca:HTTPControl"/>
+	    <element name="header" minOccurs="0" maxOccurs="unbounded" 
+								type="httpsca:HTTPHeader"/>
+	  </sequence>
+	</complexType>
+
+	<!-- end of HTTPHeaderType -->
+
+
+    <!-- start of EISHeaderType -->
+
+    <complexType name="EISHeaderType">
+		<sequence>
+			<element minOccurs="0" name="EISInteractionSpec" type="anyType"/>
+			<element minOccurs="0" name="EISConnectionSpec" type="anyType"/>
+		</sequence>
+	</complexType>
+
+    <!-- end of EISHeaderType -->
+
+
+    <!-- start of WSAHeaderType -->
+
+    <complexType name="WSAHeaderType">
+        <sequence>
+            <element minOccurs="0" ref="wsa10:To"></element>
+            <element minOccurs="0" name="ReferenceParameters" type="wsa10:ReferenceParametersType"/>
+            <element minOccurs="0" ref="wsa10:From"></element>
+            <element minOccurs="0" ref="wsa10:ReplyTo"></element>
+            <element minOccurs="0" ref="wsa10:FaultTo"></element>
+            <element minOccurs="0" ref="wsa10:Action"></element>
+            <element minOccurs="0" ref="wsa10:MessageID"></element>
+            <element minOccurs="0" maxOccurs="unbounded" ref="wsa10:RelatesTo"/>
+        </sequence>
+        <attribute name="version" type="smo:WSASchemaType" use="optional"/>
+    </complexType>
+
+    <simpleType name="WSASchemaType">
+        <restriction base="string">
+            <enumeration value="http://www.w3.org/2005/08/addressing"/>
+            <enumeration value="http://schemas.xmlsoap.org/ws/2004/08/addressing"/>
+        </restriction>
+    </simpleType>
+
+    <!-- end of WSAHeaderType -->
+
+
+</schema>
+

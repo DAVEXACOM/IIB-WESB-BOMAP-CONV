@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://www.eclipse.org/emf/2002/Ecore" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <xsd:element name="EPackage">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element maxOccurs="unbounded" name="eClassifiers">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="eSuperTypes">
+                <xsd:complexType>
+                  <xsd:attribute name="href" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" name="eStructuralFeatures">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="eType">
+                      <xsd:complexType>
+                        <xsd:attribute name="href" type="xsd:string"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="name" type="xsd:string"/>
+                  <xsd:attribute name="lowerBound" type="xsd:string"/>
+                  <xsd:attribute name="defaultValueLiteral" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="composition">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="type">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="elements">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="type">
+                                  <xsd:complexType>
+                                    <xsd:attribute name="wsdlMessage" type="xsd:string"/>
+                                  </xsd:complexType>
+                                </xsd:element>
+                              </xsd:sequence>
+                              <xsd:attribute name="id" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element maxOccurs="unbounded" name="nodes">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element minOccurs="0" name="location">
+                            <xsd:complexType>
+                              <xsd:attribute name="x" type="xsd:string"/>
+                              <xsd:attribute name="y" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element maxOccurs="unbounded" minOccurs="0" name="outTerminals">
+                            <xsd:complexType>
+                              <xsd:attribute name="longDescription" type="xsd:string"/>
+                              <xsd:attribute name="label" type="xsd:string"/>
+                              <xsd:attribute name="terminalNodeID" type="xsd:string"/>
+                              <xsd:attribute name="type" type="xsd:string"/>
+                              <xsd:attribute name="explicitType" type="xsd:string"/>
+                              <xsd:attribute name="dynamic" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element minOccurs="0" name="inTerminals">
+                            <xsd:complexType>
+                              <xsd:attribute name="longDescription" type="xsd:string"/>
+                              <xsd:attribute name="label" type="xsd:string"/>
+                              <xsd:attribute name="terminalNodeID" type="xsd:string"/>
+                              <xsd:attribute name="type" type="xsd:string"/>
+                              <xsd:attribute name="explicitType" type="xsd:string"/>
+                              <xsd:attribute name="dynamic" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element minOccurs="0" name="translation">
+                            <xsd:complexType>
+                              <xsd:attribute name="string" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="operationName" type="xsd:string"/>
+                        <xsd:attribute name="root" type="xsd:string"/>
+                        <xsd:attribute name="properties.type" type="xsd:string"/>
+                        <xsd:attribute name="properties.value" type="xsd:string"/>
+                        <xsd:attribute name="properties.name" type="xsd:string"/>
+                        <xsd:attribute name="referenceName" type="xsd:string"/>
+                        <xsd:attribute name="subflowName" type="xsd:string"/>
+                        <xsd:attribute name="subflowFile" type="xsd:string"/>
+                        <xsd:attribute name="mappingFile" type="xsd:string"/>
+                        <xsd:attribute name="name" type="xsd:string"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element maxOccurs="unbounded" minOccurs="0" name="connections">
+                      <xsd:complexType>
+                        <xsd:attribute name="sourceTerminalName" type="xsd:string"/>
+                        <xsd:attribute name="targetNode" type="xsd:string"/>
+                        <xsd:attribute name="targetTerminalName" type="xsd:string"/>
+                        <xsd:attribute name="sourceNode" type="xsd:string"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="propertyOrganizer">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="propertyDescriptor">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element minOccurs="0" name="description">
+                            <xsd:complexType>
+                              <xsd:attribute name="string" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                          <xsd:element minOccurs="0" name="propertyDescriptor">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="description">
+                                  <xsd:complexType>
+                                    <xsd:attribute name="string" type="xsd:string"/>
+                                  </xsd:complexType>
+                                </xsd:element>
+                                <xsd:element name="propertyDescriptor">
+                                  <xsd:complexType>
+                                    <xsd:sequence>
+                                      <xsd:element name="description">
+                                        <xsd:complexType>
+                                          <xsd:attribute name="string" type="xsd:string"/>
+                                        </xsd:complexType>
+                                      </xsd:element>
+                                      <xsd:element name="propertyDescriptor">
+                                        <xsd:complexType>
+                                          <xsd:sequence>
+                                            <xsd:element name="description">
+                                              <xsd:complexType>
+                                                <xsd:attribute name="string" type="xsd:string"/>
+                                              </xsd:complexType>
+                                            </xsd:element>
+                                            <xsd:element name="propertyDescriptor">
+                                              <xsd:complexType>
+                                                <xsd:sequence>
+                                                  <xsd:element name="description">
+                                                    <xsd:complexType>
+                                                      <xsd:attribute name="string" type="xsd:string"/>
+                                                    </xsd:complexType>
+                                                  </xsd:element>
+                                                  <xsd:element name="propertyDescriptor">
+                                                    <xsd:complexType>
+                                                      <xsd:sequence>
+                                                        <xsd:element name="description">
+                                                          <xsd:complexType>
+                                                            <xsd:attribute name="string" type="xsd:string"/>
+                                                          </xsd:complexType>
+                                                        </xsd:element>
+                                                        <xsd:element name="propertyDescriptor">
+                                                          <xsd:complexType>
+                                                            <xsd:sequence>
+                                                              <xsd:element name="description">
+                                                                <xsd:complexType>
+                                                                  <xsd:attribute name="string" type="xsd:string"/>
+                                                                </xsd:complexType>
+                                                              </xsd:element>
+                                                              <xsd:element name="propertyDescriptor">
+                                                                <xsd:complexType>
+                                                                  <xsd:sequence>
+                                                                    <xsd:element name="description">
+                                                                      <xsd:complexType>
+                                                                        <xsd:attribute name="string" type="xsd:string"/>
+                                                                      </xsd:complexType>
+                                                                    </xsd:element>
+                                                                  </xsd:sequence>
+                                                                  <xsd:attribute name="describedAttribute" type="xsd:string"/>
+                                                                  <xsd:attribute name="groupName" type="xsd:string"/>
+                                                                </xsd:complexType>
+                                                              </xsd:element>
+                                                            </xsd:sequence>
+                                                            <xsd:attribute name="describedAttribute" type="xsd:string"/>
+                                                            <xsd:attribute name="groupName" type="xsd:string"/>
+                                                          </xsd:complexType>
+                                                        </xsd:element>
+                                                      </xsd:sequence>
+                                                      <xsd:attribute name="describedAttribute" type="xsd:string"/>
+                                                      <xsd:attribute name="groupName" type="xsd:string"/>
+                                                    </xsd:complexType>
+                                                  </xsd:element>
+                                                </xsd:sequence>
+                                                <xsd:attribute name="describedAttribute" type="xsd:string"/>
+                                                <xsd:attribute name="groupName" type="xsd:string"/>
+                                              </xsd:complexType>
+                                            </xsd:element>
+                                          </xsd:sequence>
+                                          <xsd:attribute name="describedAttribute" type="xsd:string"/>
+                                          <xsd:attribute name="groupName" type="xsd:string"/>
+                                        </xsd:complexType>
+                                      </xsd:element>
+                                    </xsd:sequence>
+                                    <xsd:attribute name="describedAttribute" type="xsd:string"/>
+                                    <xsd:attribute name="groupName" type="xsd:string"/>
+                                  </xsd:complexType>
+                                </xsd:element>
+                              </xsd:sequence>
+                              <xsd:attribute name="describedAttribute" type="xsd:string"/>
+                              <xsd:attribute name="groupName" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                        <xsd:attribute name="describedAttribute" type="xsd:string"/>
+                        <xsd:attribute name="groupName" type="xsd:string"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element maxOccurs="unbounded" minOccurs="0" name="attributeLinks">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="overriddenAttribute">
+                      <xsd:complexType>
+                        <xsd:attribute name="href" type="xsd:string"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                  </xsd:sequence>
+                  <xsd:attribute name="column" type="xsd:string"/>
+                  <xsd:attribute name="promotedAttribute" type="xsd:string"/>
+                  <xsd:attribute name="row" type="xsd:string"/>
+                  <xsd:attribute name="overriddenNodes" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+            <xsd:attribute name="name" type="xsd:string"/>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+      <xsd:attribute name="nsURI" type="xsd:string"/>
+      <xsd:attribute name="nsPrefix" type="xsd:string"/>
+      <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

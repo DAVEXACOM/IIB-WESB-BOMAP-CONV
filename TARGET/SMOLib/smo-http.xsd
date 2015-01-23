@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@start_restricted_prolog@                                              
+Licensed Materials - Property of IBM                                   
+5724-I82 5724-L01 5655-N53 5655-R15 5724-I66                           
+Copyright IBM Corporation 2007, 2009 All Rights Reserved.                    
+US Government Users Restricted Rights- Use, duplication or disclosure  
+restricted by GSA ADP Schedule Contract with IBM Corp.                 
+@end_restricted_prolog@                                                
+-->
+<!-- 
+If any changes are made to this schema they need to be shadowed to the tooling plugin ... the tooling
+already includes the change of 326317.
+
+ *
+ * Change activity:
+ *
+ * Reason            Date   Origin   Description
+ * ===============   ====== =======  =========================================
+ * 442164            070527 markesc  Created SIBX.core.tools copy from SIBX.smobo copy
+ * 480300            071104 ajborley Updated to latest HTTP schema from WAS.sca.http
+ * 595693            090910 ajborley Updated to latest HTTP schema from WAS.sca.http
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xmlns:httpsca="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0"
+  xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+  elementFormDefault="qualified"
+  targetNamespace="http://www.ibm.com/xmlns/prod/websphere/http/sca/6.1.0">
+
+  <element name="HTTPMessageHeader" type="httpsca:HTTPMessageParameters"/>
+  
+  <complexType name="HTTPMessageParameters">
+    <sequence>
+      <element minOccurs="0" nillable="true" name="HTTPControl" type="httpsca:HTTPControl"/>
+      <element minOccurs="0" nillable="true" name="HTTPHeaders" type="httpsca:HTTPHeaders"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="HTTPControl">
+    <sequence>
+      <element minOccurs="0" nillable="true" name="URL" type="anyURI"/>
+      <element minOccurs="0" nillable="true" name="Version" type="httpsca:HTTPVersion"/>
+      <element minOccurs="0" nillable="true" name="Method" type="string"/>
+      <element minOccurs="0" nillable="true" name="DynamicOverrideURL" type="anyURI"/>
+      <element minOccurs="0" nillable="true" name="DynamicOverrideVersion" type="httpsca:HTTPVersion"/>
+      <element minOccurs="0" nillable="true" name="DynamicOverrideMethod" type="string"/>
+      <element minOccurs="0" nillable="true" name="MediaType" type="string"/>
+      <element minOccurs="0" nillable="true" name="Charset" type="string"/>
+      <element minOccurs="0" nillable="true" name="TransferEncoding" type="string"/>
+      <element minOccurs="0" nillable="true" name="ContentEncoding" type="string"/>
+      <element minOccurs="0" name="StatusCode" type="int"/>
+      <element minOccurs="0" nillable="true" name="ReasonPhrase" type="string"/>
+      <element minOccurs="0" name="ContentLength" type="int"/>
+      <element minOccurs="0" nillable="true" name="ExportContextPath" type="string"/>
+      <element minOccurs="0" nillable="true" name="Authentication" type="httpsca:HTTPAuthentication"/>
+      <element minOccurs="0" nillable="true" name="SSLSettings" type="httpsca:HTTPSSLSettings"/>
+      <element minOccurs="0" maxOccurs="2" nillable="true" name="ProxySettings" type="httpsca:HTTPProxySettings"/>
+    </sequence>
+  </complexType>
+
+   <complexType name="HTTPHeader">
+        <sequence>
+          <element name="name" type="string"/>
+             <element name="value" type="string"/>
+        </sequence>
+  </complexType>
+
+  <complexType name="HTTPHeaders">
+    <sequence>
+      <element name="header" minOccurs="0" maxOccurs="unbounded" type="httpsca:HTTPHeader"/>
+    </sequence>
+  </complexType>
+  
+   <!--SSL Settings -->
+       <complexType name="HTTPSSLSettings">
+              <sequence>
+                     <element default="SSL" nillable="true" name="SSLVersion" type="string"/>
+                     <element default="false" nillable="true" name="SSLDebug" type="boolean"/>
+                     <element default="JKS" nillable="true" name="KeyStoreType" type="string"/>
+                     <element default="JKS" nillable="true" name="TrustStoreType" type="string"/>
+                     <element nillable="true" name="KeyStore" type="string"/>
+                     <element nillable="true" name="KeyStoreAlias" type="string"/>
+                     <element nillable="true" name="KeyStorePassword" type="string"/>
+                     <element nillable="true" name="TrustStore" type="string"/>
+                     <element nillable="true" name="TrustStorePassword" type="string"/>
+                     <element default="false" nillable="true" name="UseClientAuth" type="boolean"/>
+              </sequence>
+       </complexType>
+       
+       <!--Proxy Settings -->
+       <complexType name="HTTPProxySettings">
+              <sequence>
+                     <element nillable="true" name="proxyHost" type="string"/>
+                     <element nillable="true" name="proxyPort" type="int"/>
+                     <element nillable="true" name="proxyType" type="httpsca:HTTPProxyType"/>
+                     <element nillable="true" minOccurs="0" name="proxyCredentials" type="httpsca:HTTPCredentials"/>
+                     <element nillable="true" minOccurs="0" maxOccurs="unbounded" name="nonProxyHost" type="string"/>
+              </sequence>
+       </complexType>
+       
+       <!--HTTP Authentication -->
+       <complexType name="HTTPAuthentication">
+              <sequence>
+                     <element nillable="true" name="credentials" type="httpsca:HTTPCredentials"/>
+                     <element nillable="true" name="authenticationType" type="httpsca:HTTPAuthenticationType"/>
+              </sequence>
+       </complexType>
+       
+       <!--HTTP Credentials -->
+       <complexType name="HTTPCredentials">
+              <sequence>
+                     <element nillable="true" name="userId" type="string"/>
+                     <element nillable="true" name="password" type="string"/>
+              </sequence>
+       </complexType>
+       
+       <!-- Authentication Type, for now only Basic Auth is supported -->
+       <simpleType name="HTTPAuthenticationType">
+              <restriction base="string">
+                     <enumeration value="Basic"/>
+              </restriction>
+       </simpleType>
+       
+       <!-- Proxy protocol type. For now, only http and https are supported -->
+       <simpleType name="HTTPProxyType">
+              <restriction base="string">
+                     <enumeration value="http"/>
+                     <enumeration value="https"/>
+              </restriction>
+       </simpleType>       
+       
+       <!-- HTTP Version type.-->
+       <simpleType name="HTTPVersion">
+              <restriction base="string">
+                     <enumeration value="1.0"/>
+                     <enumeration value="1.1"/>
+              </restriction>
+       </simpleType>       
+</schema>

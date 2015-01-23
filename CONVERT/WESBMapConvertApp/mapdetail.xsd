@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:csv="http://www.ibm.com/dfdl/CommaSeparatedFormat" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/CommaSeparatedFormat" schemaLocation="IBMdefined/CommaSeparatedFormat.xsd"/>
+        <xsd:element ibmSchExtn:docRoot="true" name="mapdetail">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element dfdl:terminator="%CR;%LF;%WSP*;" maxOccurs="unbounded" name="record">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="medname" type="xsd:string"/>
+              <xsd:element name="id" type="xsd:string"/>
+              <xsd:element name="name" type="xsd:string"/>
+                            <xsd:element name="root" type="xsd:string"/>
+                                        <xsd:element name="mappingFile" type="xsd:string"/>
+                        </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format documentFinalTerminatorCanBeMissing="yes" encoding="US-ASCII" escapeSchemeRef="csv:CSVEscapeScheme" ref="csv:CommaSeparatedFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+
+
+
+</xsd:schema>

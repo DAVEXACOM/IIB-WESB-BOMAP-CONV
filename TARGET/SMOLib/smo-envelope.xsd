@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@start_restricted_prolog@                                              
+Licensed Materials - Property of IBM                                   
+5724-I82 5724-L01 5655-N53 5655-R15 5724-I66                           
+Copyright IBM Corporation 2005, 2009 All Rights Reserved.                    
+US Government Users Restricted Rights- Use, duplication or disclosure  
+restricted by GSA ADP Schedule Contract with IBM Corp.                 
+@end_restricted_prolog@                                                
+-->
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+	xmlns:sdoXML="commonj.sdo/xml"
+	xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+	xmlns:smo="http://www.ibm.com/websphere/sibx/smo/v6.0.1"
+	targetNamespace="http://www.ibm.com/websphere/sibx/smo/v6.0.1">
+	
+	<include schemaLocation="smo-parts.xsd"/>
+
+	<!-- Global element for SMO -->
+	<element name="smo" type="smo:ServiceMessageObject" />
+
+	<!-- Type definition for SMO -->
+	<complexType name="ServiceMessageObject">
+		<sequence>
+			<!-- Top-level folders are always present, but may
+				themselves be empty. -->
+			<element name="context" type="smo:ContextType" />
+			<element name="headers" type="smo:HeadersType" />
+
+			<!-- Body may be absent (null as seen through Java/SDO). -->
+			<element name="body" type="anyType" minOccurs="0" />
+
+			<!--  List of attachments -->
+ 			<element name="attachments" type="smo:AttachmentType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+</schema>

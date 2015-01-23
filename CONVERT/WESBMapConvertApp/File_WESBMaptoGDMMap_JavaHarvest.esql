@@ -1,0 +1,115 @@
+/* Copyright (c) 2014 IBM Corporation and other Contributors
+
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+     IBM - initial implementation */
+
+CREATE COMPUTE MODULE File_WESBMaptoGDMMap_JavaHarvest
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		-- set up the header info
+		set OutputRoot.DFDL.JHARVEST.header.head_mapname = 'MAPNAME:'||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:name;
+		set OutputRoot.DFDL.JHARVEST.header.head_inbo = 'INBO:'||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:inputBusinessObjectVariable.name;
+		set OutputRoot.DFDL.JHARVEST.header.head_outbo = 'OUTBO:'||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.name;
+		set OutputRoot.DFDL.JHARVEST.header.head_spare = 0;
+		-- declarations	
+		DECLARE CRLF CHARACTER cast(x'0D0A' AS CHAR CCSID 819);		
+        DECLARE CNTR INTEGER 0;
+		DECLARE REF1 REFERENCE TO InputRoot.XMLNSC.ns6:businessObjectMap;
+		DECLARE REF2 REFERENCE TO REF1;
+		DECLARE REF3 REFERENCE TO REF1;
+						
+		MOVE REF1 FIRSTCHILD TYPE Name NAMESPACE * NAME 'propertyMap';
+		-- loop down from the tree
+		WHILE LASTMOVE(REF1) DO		
+		IF LASTMOVE(REF1) = TRUE THEN --IF1
+			MOVE REF2 TO REF1;
+			MOVE REF2 FIRSTCHILD TYPE Name NAMESPACE * NAME 'customAssignment'; --<-- likely to be followed by some java
+			IF LASTMOVE(REF2) = TRUE THEN --IF2
+				MOVE REF3 TO REF2;
+				MOVE REF3 FIRSTCHILD TYPE Name NAMESPACE * NAME 'javaCode'; -- should work if its there not sure why it doesn't
+				MOVE REF3 LASTCHILD;	-- shouldn't need this.
+				IF LASTMOVE(REF3) = TRUE THEN --IF3
+					Set CNTR = CNTR+1; -- increment the record count
+									-- create in order
+					Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm1 = '';
+					Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm2 = '';
+					Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm3 = '';
+					Set OutputRoot.DFDL.JHARVEST.record[CNTR].java = 'JAVA:'||CAST(CNTR as CHAR)||'@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@START'
+				                                                                      ||CRLF||REF3||CRLF;
+								-- go back and find some more info
+					MOVE REF3 TO REF2;
+					MOVE REF3 FIRSTCHILD;
+					MOVE REF3 FIRSTCHILD;
+					Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm1 = 'PARM1:'||REF3;
+					MOVE REF3 NEXTSIBLING;
+					Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm2 = 'PARM2:'||REF3;		
+					Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm3 = 'PARM3:'||'spare'||CRLF;		
+					Set OutputRoot.DFDL.JHARVEST.record[CNTR].endmarker = 'JAVA:'||CAST(CNTR as CHAR)||'@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END';				
+				END IF; --IF3
+			ELSE --IF2
+				MOVE REF2 FIRSTCHILD TYPE Name NAMESPACE * NAME 'custom'; --<-- likely to be followed by some java
+				IF LASTMOVE(REF2) = TRUE THEN --IF4 
+					MOVE REF3 TO REF2;
+					MOVE REF3 FIRSTCHILD TYPE Name NAMESPACE * NAME 'javaCode'; -- should work if its there not sure why it doesn't
+					MOVE REF3 LASTCHILD;	-- shouldn't need this.
+					IF LASTMOVE(REF3) = TRUE THEN --IF5
+						Set CNTR = CNTR+1;
+									-- create in order
+						Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm1 = '';
+						Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm2 = '';
+						Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm3 = '';
+						Set OutputRoot.DFDL.JHARVEST.record[CNTR].java = 'JAVA:'||CAST(CNTR as CHAR)||'@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@START'
+				                                                                      ||CRLF||REF3||CRLF;
+								-- go back and find some more info
+						MOVE REF3 TO REF2;
+						MOVE REF3 FIRSTCHILD;
+						MOVE REF3 FIRSTCHILD;
+						Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm1 = 'PARM1:'||REF3;
+						MOVE REF3 NEXTSIBLING;
+						Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm2 = 'PARM2:'||REF3;		
+						Set OutputRoot.DFDL.JHARVEST.record[CNTR].parm3 = 'PARM3:'||'spare'||CRLF;		
+						Set OutputRoot.DFDL.JHARVEST.record[CNTR].endmarker = 'JAVA:'||CAST(CNTR as CHAR)||'@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@END';				
+					END IF;--IF5					
+				END IF; --IF4
+			END IF; --IF2			
+		END IF; --IF1   
+     	MOVE REF1 NEXTSIBLING;
+		END WHILE;
+		
+		set OutputRoot.DFDL.JHARVEST.header.head_spare = 'JAVACOUNT:'||CAST(CNTR AS CHAR);
+--      C:\WESBCONVERT\TARGET\...
+        Set OutputLocalEnvironment.Destination.File.Directory = REPLACE(InputLocalEnvironment.File.Directory,'WESBSourceResourcesApp','ConvertedResourcesApp');
+		
+		IF CNTR = 0 THEN 
+			Set OutputRoot.DFDL.JHARVEST.record.parm1 = '';
+			Set OutputRoot.DFDL.JHARVEST.record.parm2 = '';
+			Set OutputRoot.DFDL.JHARVEST.record.parm3 = '';			
+			Set OutputRoot.DFDL.JHARVEST.record.java = 'JAVA:0:No Java';
+		    Set OutputLocalEnvironment.Destination.File.Name = REPLACE(InputLocalEnvironment.File.Name,'wesbmap','nojava');
+		ELSE
+			Set OutputLocalEnvironment.Destination.File.Name = REPLACE(InputLocalEnvironment.File.Name,'wesbmap','java');	
+		END IF;
+
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

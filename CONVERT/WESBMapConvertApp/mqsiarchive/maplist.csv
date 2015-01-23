@@ -1,0 +1,3 @@
+MD_mesBlastBlockMessage_To_BlastblockCMM_PUB,map,smo,http://bhpbilliton.net/services,smo,http://bhpbilliton.net/services,/MM_IM_MQ2_pub
+MD_mesBlastBlockMessage_To_BlastblockCMM,submap,mesBlastBlockMessageType,http://bhpbilliton.net/services,BlastblockCMM,http://bhpbilliton.net/services,/MM_IM_MQ2_pub
+MD_mesBlastBlockMessageType_To_Blastblock_Submap,submap,mesBlastBlockMessageType,http://bhpbilliton.net/services,Blastblock,http://MQ2BlastblockNotificationPublisher/BlastblockCMM,/MM_IM_MQ2_pub

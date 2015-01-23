@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema xmlns:csv="http://www.ibm.com/dfdl/CommaSeparatedFormat" xmlns:dfdl="http://www.ogf.org/dfdl/dfdl-1.0/" xmlns:ibmDfdlExtn="http://www.ibm.com/dfdl/extensions" xmlns:ibmSchExtn="http://www.ibm.com/schema/extensions" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+
+
+    <xsd:import namespace="http://www.ibm.com/dfdl/CommaSeparatedFormat" schemaLocation="IBMdefined/CommaSeparatedFormat.xsd"/>
+    <xsd:annotation>
+		<xsd:appinfo source="http://www.ogf.org/dfdl/">
+			<dfdl:format documentFinalTerminatorCanBeMissing="yes" encoding="{$dfdl:encoding}" escapeSchemeRef="csv:CSVEscapeScheme" ref="csv:CommaSeparatedFormat"/>
+		</xsd:appinfo>
+	</xsd:annotation>
+
+	<xsd:element ibmSchExtn:docRoot="true" name="JHARVEST">
+		<xsd:complexType>
+			<xsd:sequence dfdl:separator="">
+				<xsd:element dfdl:terminator="%CR;%LF;%WSP*;" name="header">
+					<xsd:complexType>
+						<xsd:sequence>
+							<xsd:element ibmDfdlExtn:sampleValue="head_value1" name="head_mapname" type="xsd:string"/>
+							<xsd:element ibmDfdlExtn:sampleValue="head_value2" name="head_inbo" type="xsd:string"/>							
+							<xsd:element ibmDfdlExtn:sampleValue="head_value3" name="head_outbo" type="xsd:string"/>							
+                            <xsd:element ibmDfdlExtn:sampleValue="head_value4" name="head_spare" type="xsd:string"/>
+                        </xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>			
+				<xsd:element dfdl:occursCountKind="implicit" dfdl:terminator="%CR;%LF;%WSP*;" maxOccurs="unbounded" name="record">
+					<xsd:complexType>
+						<xsd:sequence> 
+							<xsd:element ibmDfdlExtn:sampleValue="value1" name="parm1" type="xsd:string"/>
+							<xsd:element ibmDfdlExtn:sampleValue="value2" name="parm2" type="xsd:string"/>
+							<xsd:element ibmDfdlExtn:sampleValue="value3" name="parm3" type="xsd:string"/>
+                            <xsd:element ibmDfdlExtn:sampleValue="value4" name="java" type="xsd:string"/>
+                                                    <xsd:element default="@@@@@@@@@@" ibmDfdlExtn:sampleValue="@@@@@" name="endmarker" type="xsd:string"/>
+                        </xsd:sequence>
+					</xsd:complexType>
+				</xsd:element>				
+			</xsd:sequence>
+		</xsd:complexType>
+	</xsd:element>
+
+
+
+</xsd:schema>

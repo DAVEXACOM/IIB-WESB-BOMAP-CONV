@@ -1,0 +1,363 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+@start_restricted_prolog@                                              
+Licensed Materials - Property of IBM                                   
+5724-I82 5724-L01 5655-N53 5655-R15 5724-I66                           
+Copyright IBM Corporation 2005 All Rights Reserved.                    
+US Government Users Restricted Rights- Use, duplication or disclosure  
+restricted by GSA ADP Schedule Contract with IBM Corp.                 
+@end_restricted_prolog@                                                
+-->
+
+<!-- 
+ * Change activity:
+ *
+ * Reason            Date   Origin   Description
+ * ===============   ====== =======  =========================================
+ * F249511.16.01     050916 mrudge   genesis
+ * 316455            051027 mrudge   schema rebase & namespace updates
+ * 326317            051124 mrudge   Change minOccurs on failInfo predecessor
+ * 345625            060216 wooda    minOcurrs="0" on JMSCorrelationID
+ * Borazon           060508 mrudge   MQ Support, Next.endpoint, property type
+ * 367580 (botp)     060721 markesc  Update this copy from latest wmqstructures.xsd (v1.3) in CMVC
+-->
+
+<schema xmlns="http://www.w3.org/2001/XMLSchema"
+        xmlns:mq="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0"
+        xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+        targetNamespace="http://www.ibm.com/xmlns/prod/websphere/mq/sca/6.0.0">
+
+  <complexType name="MQMD">
+    <sequence>
+      <element minOccurs="0" name="Report" type="mq:MQLONG"/>
+      <element minOccurs="0" name="MsgType" type="mq:MQLONG"/>
+      <element minOccurs="0" name="Expiry" type="mq:MQLONG"/>
+      <element minOccurs="0" name="Feedback" type="mq:MQLONG"/>
+      <element minOccurs="0" name="Priority" type="mq:MQLONG"/>
+      <element minOccurs="0" name="Persistence" type="mq:MQLONG"/>
+      <element minOccurs="0" name="MsgId" type="mq:MQBYTE24"/>
+      <element minOccurs="0" name="CorrelId" type="mq:MQBYTE24"/>
+      <element minOccurs="0" name="BackoutCount" type="mq:MQLONG"/>
+      <element minOccurs="0" name="ReplyToQ" type="mq:MQCHAR48"/>
+      <element minOccurs="0" name="ReplyToQMgr" type="mq:MQCHAR48"/>
+      <element minOccurs="0" name="UserIdentifier" type="mq:MQCHAR12"/>
+      <element minOccurs="0" name="AccountingToken" type="mq:MQBYTE32"/>
+      <element minOccurs="0" name="ApplIdentityData" type="mq:MQCHAR32"/>
+      <element minOccurs="0" name="PutApplType" type="mq:MQLONG"/>
+      <element minOccurs="0" name="PutApplName" type="mq:MQCHAR28"/>
+      <element minOccurs="0" name="PutDate" type="mq:MQCHAR8"/>
+      <element minOccurs="0" name="PutTime" type="mq:MQCHAR8"/>
+      <element minOccurs="0" name="ApplOriginData" type="mq:MQCHAR4"/>
+      <element minOccurs="0" name="GroupId" type="mq:MQBYTE24"/>
+      <element minOccurs="0" name="MsgSeqNumber" type="mq:MQLONG"/>
+      <element minOccurs="0" name="Offset" type="mq:MQLONG"/>
+      <element minOccurs="0" name="MsgFlags" type="mq:MQLONG"/>
+      <element minOccurs="0" name="OriginalLength" type="mq:MQLONG"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="MQControl">
+    <sequence>
+      <element minOccurs="0" name="Encoding" type="mq:MQLONG"/>
+      <element minOccurs="0" name="CodedCharSetId" type="mq:MQLONG"/>
+      <element minOccurs="0" name="Format" type="mq:MQCHAR8"/>
+    </sequence>
+  </complexType>
+
+  <!-- Represents any WMQ header within SCA Messages, not used for SMO -->
+  <complexType name="MQHeader">
+  	<complexContent>
+	  <extension base="mq:MQControl">
+        <sequence>
+          <element name="value" type="anyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+
+  <complexType name="MQHeaders">
+    <sequence>
+      <element name="header" minOccurs="0" maxOccurs="unbounded" type="mq:MQHeader"/>
+    </sequence>
+  </complexType>
+
+
+  <complexType name="MQOpaqueHeader">
+    <sequence>
+      <element minOccurs="0" name="StrucId" type="mq:MQCHAR4"/>
+      <element minOccurs="0" name="Version" type="mq:MQLONG"/>
+      <element minOccurs="0" name="Flags" type="mq:MQLONG"/>
+      <element minOccurs="0" name="data" type="hexBinary"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="MQRFH">
+    <sequence>
+      <element name="Flags" type="mq:MQLONG" default="0"/>
+      <element name="property" minOccurs="0" maxOccurs="unbounded" type="mq:MQRFHProperty"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="MQRFHProperty">
+    <sequence>
+      <element name="name" type="string"/>
+      <element name="value" type="string"/>
+    </sequence>
+  </complexType>
+
+  <complexType name="MQRFH2">
+    <sequence>
+      <element name="Flags" type="mq:MQLONG" default="0"/>
+      <element name="NameValueCCSID" type="mq:MQLONG" default="1208"/>
+      <element name="folder" minOccurs="0" maxOccurs="unbounded" type="mq:MQRFH2Group"/>
+    </sequence>
+  </complexType>
+  
+  <complexType name="MQCIH">
+    <sequence>
+            <element minOccurs="0" name="ProgramName" type="mq:MQCHAR8"/>
+            <element minOccurs="0" name="Version" type="mq:MQLONG"/>
+            <element minOccurs="0" name="Flags" type="mq:MQLONG"/>
+            <element minOccurs="0" name="ReturnCode" type="mq:MQLONG"/>
+            <element minOccurs="0" name="CompCode" type="mq:MQLONG"/>
+            <element minOccurs="0" name="Reason" type="mq:MQLONG"/>
+            <element minOccurs="0" name="UOWControl" type="mq:MQLONG"/>
+            <element minOccurs="0" name="GetWaitInterval" type="mq:MQLONG"/>
+            <element minOccurs="0" name="LinkType" type="mq:MQLONG"/>
+            <element minOccurs="0" name="OutputDataLength" type="mq:MQLONG"/>
+            <element minOccurs="0" name="FacilityKeepTime" type="mq:MQLONG"/>	
+        	<element minOccurs="0" name="ADSDescriptor" type="mq:MQLONG"/> 
+        	<element minOccurs="0" name="ConversationalTask" type="mq:MQLONG"/> 
+        	<element minOccurs="0" name="TaskEndStatus" type="mq:MQLONG"/>
+        	<element minOccurs="0" name="Facility" type="mq:MQBYTE8"/>         		            
+            <element minOccurs="0" name="Function" type="mq:MQCHAR4" default=""/>
+            <element minOccurs="0" name="AbendCode" type="mq:MQCHAR4" default=""/>
+            <element minOccurs="0" name="Authenticator" type="mq:MQCHAR8" default=""/>
+            <element minOccurs="0" name="Reserved1" type="mq:MQCHAR8" default=""/>					
+            <element minOccurs="0" name="ReplyToFormat" type="mq:MQCHAR8" default=""/>
+            <element minOccurs="0" name="RemoteSysId" type="mq:MQCHAR4" default=""/>
+            <element minOccurs="0" name="RemoteTransId" type="mq:MQCHAR4" default=""/>
+            <element minOccurs="0" name="TransactionId" type="mq:MQCHAR4" default=""/>  
+            <element minOccurs="0" name="FacilityLike" type="mq:MQCHAR4" default=""/>
+		    <element minOccurs="0" name="AttentionId" type="mq:MQCHAR4" default=""/> 
+		    <element minOccurs="0" name="StartCode" type="mq:MQCHAR4" default=""/> 
+		    <element minOccurs="0" name="CancelCode" type="mq:MQCHAR4" default=""/> 
+		    <element minOccurs="0" name="NextTransactionId" type="mq:MQCHAR4" default=""/> 
+		    <element minOccurs="0" name="Reserved2" type="mq:MQCHAR8" default=""/> 
+		    <element minOccurs="0" name="Reserved3" type="mq:MQCHAR8" default=""/> 
+		    <element minOccurs="0" name="CursorPosition" type="mq:MQLONG"/>
+		    <element minOccurs="0" name="ErrorOffset" type="mq:MQLONG"/> 
+			<element minOccurs="0" name="InputItem" type="mq:MQLONG"/> 
+			<element minOccurs="0" name="Reserved4" type="mq:MQLONG"/>    	
+      </sequence>
+  	</complexType>
+  
+  
+  <complexType name="MQIIH">
+    <sequence>
+            <element minOccurs="0" name="Version" type="mq:MQLONG" fixed="1"/>
+            <element minOccurs="0" name="Flags" type="mq:MQLONG"/>
+            <element minOccurs="0" name="LTermOverride" type="mq:MQCHAR8"/>
+            <element minOccurs="0" name="MFSMapName" type="mq:MQCHAR8"/>
+            <element minOccurs="0" name="ReplyToFormat" type="mq:MQCHAR8"/>
+            <element minOccurs="0" name="Authenticator" type="mq:MQCHAR8"/>
+            <element minOccurs="0" name="TranInstanceId" type="mq:MQBYTE16"/>
+            <element minOccurs="0" name="TranState" type="mq:MQCHAR"/>
+            <element minOccurs="0" name="CommitMode" type="mq:MQCHAR"/>	
+        	<element minOccurs="0" name="SecurityScope" type="mq:MQCHAR"/> 
+        	<element minOccurs="0" name="Reserved" type="mq:MQCHAR"/>  	
+      </sequence>
+  	</complexType>
+  
+
+  <!-- To represent the repeating choice, EMF/SDO/BO creates a property named
+       "rfh2Contents" (due to the featureMap setting, otherwise it'd be called
+       "group:1") which group and property extend. Users shouldn't normally need
+       to access rfh2Contents directly; if they did, they'd find it contains a
+       Sequence object. -->
+  <complexType name="MQRFH2Group">
+    <sequence>
+      <element name="name" type="NCName"/>
+      <choice minOccurs="0" maxOccurs="unbounded" ecore:featureMap="rfh2Contents">
+        <element name="group" type="mq:MQRFH2Group"/>
+        <element name="property" type="mq:MQRFH2Property"/>
+      </choice>
+    </sequence>
+  </complexType>
+
+  <complexType name="MQRFH2Property">
+    <sequence>
+      <element name="name" type="NCName"/>
+      <element name="type" minOccurs="0" type="mq:MQRFH2PropertyType"/>
+      <element name="value" type="string"/>
+    </sequence>
+  </complexType>
+
+  <simpleType name="MQRFH2PropertyType">
+    <restriction base="string">
+      <enumeration value="string"/>
+      <enumeration value="boolean"/>
+      <enumeration value="bin.hex"/>
+      <enumeration value="i1"/>
+      <enumeration value="i2"/>
+      <enumeration value="i4"/>
+      <enumeration value="i8"/>
+      <enumeration value="int"/>
+      <enumeration value="r4"/>
+      <enumeration value="r8"/>
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQBYTE">
+    <restriction base="hexBinary">
+      <length value="1" />
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQBYTE8">
+    <restriction base="hexBinary">
+      <length value="8" />
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQBYTE16">
+    <restriction base="hexBinary">
+      <length value="16" />
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQBYTE24">
+    <restriction base="hexBinary">
+      <length value="24" />
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQBYTE32">
+    <restriction base="hexBinary">
+      <length value="32" />
+    </restriction>
+  </simpleType>
+
+  <!-- These definition restricts to a number of characters; they actually represent
+    that number of bytes in the relevant character set -->
+  <!-- TODO The version of EMF we're using in 6.0.2 does not implement the maxLength
+  	   restriction correctly; these are commented out. -->
+  <simpleType name="MQCHAR">
+    <restriction base="string">
+      <length value="1" />
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR4">
+    <restriction base="string">
+      <!-- maxLength value="4" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR8">
+    <restriction base="string">
+      <!-- maxLength value="8" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR12">
+    <restriction base="string">
+      <!-- maxLength value="12" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR16">
+    <restriction base="string">
+      <!-- maxLength value="16" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR20">
+    <restriction base="string">
+      <!-- maxLength value="20" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR24">
+    <restriction base="string">
+      <!-- maxLength value="24" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR28">
+    <restriction base="string">
+      <!-- maxLength value="28" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR32">
+    <restriction base="string">
+      <!-- maxLength value="32" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR48">
+    <restriction base="string">
+      <!-- maxLength value="48" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR64">
+    <restriction base="string">
+      <!-- maxLength value="64" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR128">
+    <restriction base="string">
+      <!-- maxLength value="128" / -->
+    </restriction>
+  </simpleType>
+
+  <simpleType name="MQCHAR256">
+    <restriction base="string">
+      <!-- maxLength value="256" / -->
+    </restriction>
+  </simpleType>
+
+
+  <simpleType name="MQSHORT">
+    <restriction base="short" />
+  </simpleType>
+
+  <simpleType name="MQUSHORT">
+    <restriction base="unsignedShort" />
+  </simpleType>
+
+  <simpleType name="MQLONG">
+    <restriction base="int" />
+  </simpleType>
+
+  <simpleType name="MQULONG">
+    <restriction base="unsignedInt" />
+  </simpleType>
+
+  <simpleType name="MQINT32">
+    <restriction base="int" />
+  </simpleType>
+
+  <simpleType name="MQUINT32">
+    <restriction base="unsignedInt" />
+  </simpleType>
+
+  <simpleType name="MQINT64">
+    <restriction base="long" />
+  </simpleType>
+
+  <simpleType name="MQUINT64">
+    <restriction base="unsignedLong" />
+  </simpleType>
+
+  <simpleType name="NineDigits">
+    <restriction base="int">
+      <minInclusive value="0" />
+      <maxInclusive value="999999999" />
+    </restriction>
+  </simpleType>
+
+</schema>

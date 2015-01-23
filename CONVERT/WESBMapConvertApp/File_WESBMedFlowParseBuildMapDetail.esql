@@ -1,0 +1,93 @@
+/* Copyright (c) 2014 IBM Corporation and other Contributors
+
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+     IBM - initial implementation */
+DECLARE nsE NAMESPACE 'http://www.eclipse.org/emf/2002/Ecore';
+
+CREATE COMPUTE MODULE File_WESBMedFlowParseBuildMapDetail
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+-- Get the name of the mediation flow being parsed from the FileInput Node
+		DECLARE MEDNAME CHARACTER 'dummy.medflow';
+		SET MEDNAME = InputLocalEnvironment.File.Name;
+-- Does this mediation contain a BO Mapping node?		
+		DECLARE REF1 REFERENCE TO InputRoot.XMLNSC.nsE:EPackage;
+		DECLARE GOTMAP boolean false;
+--		MOVE REF1 FIRSTCHILD TYPE Name NAMESPACE * NAME 'BOMapper.mednode'; -- did not navigate, shame!
+		MOVE REF1 FIRSTCHILD;
+		WHILE LASTMOVE(REF1)DO
+			IF  CONTAINS(REF1,'BOMapper.mednode') 	THEN
+				Set GOTMAP = true;
+			END IF;
+		    MOVE REF1 NEXTSIBLING;							
+		END WHILE;
+	IF (GOTMAP = false) then
+-- This mediation contains no BO MAP nodes
+		Set OutputRoot.DFDL.mapdetail.record.medname = MEDNAME;
+		Set OutputRoot.DFDL.mapdetail.record.id = 'No';
+		Set OutputRoot.DFDL.mapdetail.record.name = 'maps';
+		Set OutputRoot.DFDL.mapdetail.record.mappingFile = 'in this';
+		Set OutputRoot.DFDL.mapdetail.record.root = 'mediation flow';	
+	ELSE	
+
+--<nodes xmi:type="BOMapper.mednode:BOMapper" xmi:id="BOMapper_1" name="MD_mesBlastBlockMessage_To_BlastblockCMM_PUB"
+-- @DA@ can't nav to xmi:type or xmi:id directly     root="/" mappingFile="MD_mesBlastBlockMessage_To_BlastblockCMM_PUB.map">
+
+		DECLARE CNTR INTEGER 0; --@DA@ move to 1 when loop introduced
+-- @DA@ there can be an array if eClassifiers outer loop will spin through each eClassifier
+		DECLARE REFeClass REFERENCE TO InputRoot.XMLNSC.nsE:EPackage.eClassifiers; -- 1st eClassifier
+		WHILE LASTMOVE(REFeClass) DO
+-- @DA@      Nav to MOVE REF1 TO InputRoot.XMLNSC.nsE:EPackage.eClassifiers[1].composition.nodes;
+			MOVE REF1 TO REFeClass;
+			MOVE REF1 FIRSTCHILD TYPE Name NAMESPACE * NAME 'composition';
+			MOVE REF1 FIRSTCHILD TYPE Name NAMESPACE * NAME 'nodes';
+				 						 		
+			DECLARE	REF2 REFERENCE TO REF1;				
+       		while lastmove(REF1) do		
+				MOVE REF2 TO REF1;		
+				MOVE REF2 FIRSTCHILD;               /* xmi:type */
+-- @DA@ don't bother capturing the type we just need to know it's 'BOMapper.mednode:BOMapper'
+				IF  CONTAINS(REF2,'BOMapper.mednode:BOMapper') 	THEN
+		    		SET CNTR = CNTR+1;		 
+					Set OutputRoot.DFDL.mapdetail.record[CNTR].medname = MEDNAME; 
+					MOVE REF2 NEXTSIBLING;              /* xmi:id */
+					Set OutputRoot.DFDL.mapdetail.record[CNTR].id = REF2; -- @DA@ can we guarantee the order?			
+-- @DA@	use			Set OutputRoot.DFDL.mapdetail.record[CNTR].name = InputRoot.XMLNSC.nsE:EPackage.eClassifiers.composition.nodes[CNTR].(XMLNSC.Attribute)name;
+-- @DA@	refs		Set OutputRoot.DFDL.mapdetail.record[CNTR].root = InputRoot.XMLNSC.nsE:EPackage.eClassifiers.composition.nodes[CNTR].(XMLNSC.Attribute)root;
+-- @DA@	to nav		Set OutputRoot.DFDL.mapdetail.record[CNTR].mappingFile = InputRoot.XMLNSC.nsE:EPackage.eClassifiers.composition.nodes[CNTR].(XMLNSC.Attribute)mappingFile;
+					MOVE REF2 NEXTSIBLING;              /* xmi:name */ 
+					Set OutputRoot.DFDL.mapdetail.record[CNTR].name = REF2;
+					MOVE REF2 NEXTSIBLING;              /* xmi:root */
+					Set OutputRoot.DFDL.mapdetail.record[CNTR].root = REF2;
+					MOVE REF2 NEXTSIBLING;              /* xmi:mappingFile */			
+					Set OutputRoot.DFDL.mapdetail.record[CNTR].mappingFile = REF2;		
+				END IF;
+        		MOVE REF1 nextsibling;		
+       		end while;	-- end of REF1
+			MOVE REFeClass nextsibling;	       	
+		END WHILE;  -- end of REFeClass	
+	END IF; -- end of GOTMAP
+--      set up the target directory and file name C:\WESBCONVERT\TARGET\...
+    Set OutputLocalEnvironment.Destination.File.Directory = REPLACE(InputLocalEnvironment.File.Directory,'WESBSourceResourcesApp','ConvertedResourcesApp');
+	Set OutputLocalEnvironment.Destination.File.Name = REPLACE(InputLocalEnvironment.File.Name,'medflow','csv');
+								
+	RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+END MODULE;

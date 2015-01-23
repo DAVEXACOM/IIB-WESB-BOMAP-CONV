@@ -1,0 +1,175 @@
+/* Copyright (c) 2014 IBM Corporation and other Contributors
+
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+ 
+ Contributors:
+     IBM - initial implementation */
+DECLARE ns NAMESPACE 'http://www.ibm.com/2008/ccl/Mapping';
+DECLARE ns6 NAMESPACE 'http://www.ibm.com/xmlns/prod/websphere/wbiserver/map/6.0.0';
+
+
+CREATE COMPUTE MODULE File_WESBMaptoGDMMap_BuildAMapFromWESBMap
+	CREATE FUNCTION Main() RETURNS BOOLEAN
+	BEGIN
+		CALL CopyMessageHeaders();
+		Set OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)domainID ='com.ibm.msl.mapping.xml';
+		Set OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)domainIDExtension ='mb';
+-- @DA@ Is it a mainmap or a submap?
+-- @DA@ Naming conventions may help identify a high level (mainmap) from a submap	
+-- @DA@ In WESB high level maps tend have SMOs at the top - but this may not always be the case	
+-- @DA@ We may we need a properties file with some meta-data about each map to work off - by map name the file would contain some data about the map.		
+	
+		IF  CONTAINS(InputRoot.XMLNSC.ns6:businessObjectMap.ns6:name,'Submap') 	THEN
+			Set OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)mainMap ='false';			
+		ELSE
+			IF CONTAINS(InputRoot.XMLNSC.ns6:businessObjectMap.ns6:inputBusinessObjectVariable.(XMLNSC.Attribute)name, 'ServiceMessageObject') THEN 
+				Set OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)mainMap ='true';
+			ELSE
+				Set OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)mainMap ='false';							
+			END IF;							
+		END IF;
+-- @DA set up mappingRoot.targetNamespace		
+		Set OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)targetNamespace ='default';
+-- @DA set up mappingRoot.version			
+		Set OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)version ='8.0.4.0';
+-- @DA set up mappingRoot.input.path AND mappingRoot.input.path		
+		IF CONTAINS(OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)mainMap, 'true') THEN
+		    Set OutputRoot.XMLNSC.ns:mappingRoot.ns:input.(XMLNSC.Attribute)path = '/'||'smo-envelope'||'.xsd';			
+		    Set OutputRoot.XMLNSC.ns:mappingRoot.ns:output.(XMLNSC.Attribute)path ='/'||'smo-envelope'||'.xsd';			
+		ELSE			
+			Set OutputRoot.XMLNSC.ns:mappingRoot.ns:input.(XMLNSC.Attribute)path ='/'||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:inputBusinessObjectVariable.(XMLNSC.Attribute)name||'.xsd';
+			Set OutputRoot.XMLNSC.ns:mappingRoot.ns:output.(XMLNSC.Attribute)path ='/'||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name||'.xsd';
+		END IF;
+-- @DA set up mappingRoot.generation.engine				
+		Set OutputRoot.XMLNSC.ns:mappingRoot.ns:generation.(XMLNSC.Attribute)engine = 'xquery';
+-- @DA set up mappingRoot.mappingDeclaration.name			
+		Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.(XMLNSC.Attribute)name = InputRoot.XMLNSC.ns6:businessObjectMap.ns6:name;
+-- @DA define the type('myObjectName') characters that maybe required.
+		DECLARE TYPE1 CHARACTER 'type(''';
+		DECLARE TYPE2 CHARACTER ''')';
+--@DA@ start comments
+-- two attribute names are "dynamic" i.e. it is based on 'xmlns:'||InputRoot.XMLNSC.ns6:inputBusinessObjectVariable.(XMLNSC.Attribute)name
+-- I'd like to use the EVAL approach but the basic hard coded navigation to dynamic fields does resolve.
+--		Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)namespace = InputRoot.XMLNSC.ns6:businessObjectMap.(XMLNSC.Attribute)targetNamespace; -- that nav works fine
+--		Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)namespace = InputRoot.XMLNSC.ns6:businessObjectMap.(XMLNSC.Attribute)mesBlastBlockMessageType; -- nav does not work
+--		Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)namespace = InputRoot.XMLNSC.ns6:businessObjectMap.(XMLNSC.Attribute)xmlns:mesBlastBlockMessageType; -- nav does not work
+--		DECLARE BLDCHR CHARACTER;		
+--		SET BLDCHR = 'InputRoot.XMLNSC.ns6:businessObjectMap.(XMLNSC.Attribute)xmlns:'||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:inputBusinessObjectVariable.(XMLNSC.Attribute)name;
+--		SET BLDCHR = 'InputRoot.XMLNSC.ns6:businessObjectMap.(XMLNSC.Attribute)'||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name;		
+--		Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)namespace = EVAL(BLDCHR);
+-- @DA@ end comments
+-- @DA So use references instead of above and hope the attributes always appear in the same place or, we'll have to loop through checking names as we go.
+		DECLARE REF1 REFERENCE TO InputRoot.XMLNSC.ns6:businessObjectMap.(XMLNSC.Attribute)targetNamespace;
+-- @DA move to the xmlns:dynamic_name_based_on_input_business_object		
+		MOVE REF1 PREVIOUSSIBLING;
+		
+-- @DA@ mappingRoot.mappingDeclaration.input.path may need to be 'myObjectName' or type('myObjectName') or mb:msg(smo,assembly,XMLNSC,Properties)'				    
+-- @DA@ if the object ends in Type we should add the type('myObjectName') but this is naming convention based only (there are exceptions!)
+-- @DA@ if there was a ServiceMessageObject as INPUT object we have set mainmap to true so hard code an SMO set up perhaps
+
+-- @DA set up mappingRoot.mappingDeclaration.input.namespace and mappingRoot.mappingDeclaration.input.path
+		IF CONTAINS(OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)mainMap, 'true') THEN
+		    Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)namespace = 'http://www.ibm.com/websphere/sibx/smo/v6.0.1';
+			Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)path = 'mb:msg(smo,assembly,XMLNSC,Properties)';		    
+			
+		ELSE
+			IF CONTAINS(InputRoot.XMLNSC.ns6:businessObjectMap.ns6:inputBusinessObjectVariable.(XMLNSC.Attribute)name, 'Type') THEN
+				Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)namespace = REF1; 
+				Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)path = TYPE1||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:inputBusinessObjectVariable.(XMLNSC.Attribute)name||TYPE2;						
+			ELSE
+				Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)namespace = REF1;
+				Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:input.(XMLNSC.Attribute)path = InputRoot.XMLNSC.ns6:businessObjectMap.ns6:inputBusinessObjectVariable.(XMLNSC.Attribute)name;			
+			END IF;
+		END IF;
+	
+-- @DA@ I'd like to use the EVAL approach but the basic hard coded navigation to dynamic fields does resolve. 				
+			DECLARE REF2 REFERENCE TO InputRoot.XMLNSC.ns6:businessObjectMap;
+-- @DA move to the xmlns:dynamic_name_based_on_input_business_object				
+			MOVE REF2 FIRSTCHILD;				
+
+-- @DA@ mappingRoot.mappingDeclaration.input.path may need to be 'myObjectName' or type('myObjectName') or mb:msg(smo,assembly,XMLNSC,Properties)'				    
+-- @DA@ if the object ends in Type we should add the type('myObjectName') but this is naming convention based only (there are exceptions!)
+-- @DA@ if there was a ServiceMessageObject as INPUT object we have set mainmap to true so hard code an SMO set up
+-- @DA how can we tell the diff between mesBlastBlockMessage the element and mesBlastBlockMessage the Type. There is also msBlastBlockMessageType				    
+		IF CONTAINS(OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)mainMap, 'true') THEN
+		    Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:output.(XMLNSC.Attribute)namespace = 'http://www.ibm.com/websphere/sibx/smo/v6.0.1';			
+			Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:output.(XMLNSC.Attribute)path = 'mb:msg(smo,assembly,XMLNSC,Properties)';
+		ELSE		
+			IF CONTAINS(InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name, 'Type') THEN
+				Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:output.(XMLNSC.Attribute)namespace = REF2;		    
+				Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:output.(XMLNSC.Attribute)path = TYPE1||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name||TYPE2;									 		
+			ELSE
+				Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:output.(XMLNSC.Attribute)namespace = REF2;		    				
+				Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:output.(XMLNSC.Attribute)path = InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name;			
+			END IF;
+		END IF;
+					
+-- @@@@@@@@@@@DA special case start - occasionally you just have to code for a specific case @@@@@@@@@@DA --
+		IF CONTAINS(InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name, 'Blastblock') THEN
+			Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:output.(XMLNSC.Attribute)path = TYPE1||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name||TYPE2;									 		
+		END IF;
+-- @@@@@@@@@@@DA BHP special case end @@@@@@@@@@DA --		
+
+--@DA loop through the MOVES in the map 
+
+
+	IF CONTAINS(OutputRoot.XMLNSC.ns:mappingRoot.(XMLNSC.Attribute)mainMap,'false') THEN 	
+		DECLARE CNTR INTEGER 0;
+		DECLARE REFin1 REFERENCE TO InputRoot.XMLNSC.ns6:businessObjectMap;
+		DECLARE REFin2 REFERENCE TO REFin1;
+		DECLARE REFsub REFERENCE TO REFin1;		
+ 
+		MOVE REFin1 FIRSTCHILD TYPE Name NAMESPACE * NAME 'propertyMap';
+/*@DA@ to get into the MOVE loop, we have established this is NOT a root map with an SMO
+       however, does it just call another submap to do the real work? example follows
+  <map:propertyMap executionOrder="1">
+    <map:submap submapName="MD_mesBlastBlockMessage_To_BlastblockCMM:MD_mesBlastBlockMessageType_To_Blastblock_Submap">
+      <map:input businessObjectVariableRef="mesBlastBlockMessage" property="mesBlastBlockMessages" variableName="mesBlastBlockMessageType"/>
+      <map:output businessObjectVariableRef="BlastblockCMM" property="Blastblock" variableName="Blastblock"/>
+    </map:submap>
+ @DA@*/  
+  		MOVE REFsub TO REFin1;
+		MOVE REFsub FIRSTCHILD TYPE Name NAMESPACE * NAME 'submap';
+		IF LASTMOVE(REFsub)= false THEN  --@DA we could add submap processing code in an ELSE from here 				
+ 		 WHILE LASTMOVE(REFin1) DO
+ 			SET CNTR=CNTR+1;
+ 			MOVE REFin2 TO REFin1;
+			MOVE REFin2 FIRSTCHILD TYPE Name NAMESPACE * NAME 'move';	
+--@DA@ do a last move check here, we can then check for custom or customassignment
+--@DA@ might still create a move in the target to just maintain the relationship rather than try to embed the java
+--@DA@ maybe the JavaHarvester code could plug in and build out in the localenvironment then branch to a separate Fileoutput via 'out2' terminal 			
+			MOVE REFin2 FIRSTCHILD;
+			MOVE REFin2 LASTCHILD;
+			Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:move[CNTR].ns:input.(XMLNSC.Attribute)path = REFin2;
+			MOVE REFin2 PARENT;
+			MOVE REFin2 NEXTSIBLING;
+			MOVE REFin2 LASTCHILD;
+			Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:move[CNTR].ns:output.(XMLNSC.Attribute)path = REFin2;
+			MOVE REFin1 NEXTSIBLING;
+ 		 END WHILE;
+		END IF;	
+	END IF;
+--      C:\WESBCONVERT\TARGET\...
+        Set OutputLocalEnvironment.Destination.File.Directory = REPLACE(InputLocalEnvironment.File.Directory,'WESBSourceResourcesApp','ConvertedResourcesApp');
+		Set OutputLocalEnvironment.Destination.File.Name = REPLACE(InputLocalEnvironment.File.Name,'wesbmap','map');
+ 			
+		RETURN TRUE;
+	END;
+
+	CREATE PROCEDURE CopyMessageHeaders() BEGIN
+		DECLARE I INTEGER 1;
+		DECLARE J INTEGER;
+		SET J = CARDINALITY(InputRoot.*[]);
+		WHILE I < J DO
+			SET OutputRoot.*[I] = InputRoot.*[I];
+			SET I = I + 1;
+		END WHILE;
+	END;
+
+	CREATE PROCEDURE CopyEntireMessage() BEGIN
+		SET OutputRoot = InputRoot;
+	END;
+END MODULE;

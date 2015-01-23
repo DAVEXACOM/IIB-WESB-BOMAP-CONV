@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:ComIbmCompute.msgnode="ComIbmCompute.msgnode" xmlns:ComIbmFileInput.msgnode="ComIbmFileInput.msgnode" xmlns:ComIbmFileOutput.msgnode="ComIbmFileOutput.msgnode" xmlns:ComIbmFlowOrder.msgnode="ComIbmFlowOrder.msgnode" xmlns:ComIbmTrace.msgnode="ComIbmTrace.msgnode" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow="http://www.ibm.com/wbi/2005/eflow" xmlns:utility="http://www.ibm.com/wbi/2005/eflow_utility" nsURI="File_WESBMedFlowParseBuildMapDetail.msgflow"
+    nsPrefix="File_WESBMedFlowParseBuildMapDetail.msgflow">
+  <eClassifiers xmi:type="eflow:FCMComposite" name="FCMComposite_1">
+    <eSuperTypes href="http://www.ibm.com/wbi/2005/eflow#//FCMBlock"/>
+    <translation xmi:type="utility:TranslatableString" key="File_WESBMedFlowParseBuildMapDetail" bundleName="File_WESBMedFlowParseBuildMapDetail" pluginId="WESBMapConvertApp"/>
+    <colorGraphic16 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/WESBMapConvertApp/icons/full/obj16/File_WESBMedFlowParseBuildMapDetail.gif"/>
+    <colorGraphic32 xmi:type="utility:GIFFileGraphic" resourceName="platform:/plugin/WESBMapConvertApp/icons/full/obj30/File_WESBMedFlowParseBuildMapDetail.gif"/>
+    <shortDescription xmi:type="utility:ConstantString" string="Copyright (c) 2014 IBM Corporation and other Contributors"/>
+    <composition>
+      <nodes xmi:type="ComIbmFileInput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_1" location="75,113" inputDirectory="C:\WESBCONVERT\TARGET\WESBSourceResourcesApp" filenamePattern="*.medflow" processedFileAction="moveToArchive" replaceDuplicateArchives="true" messageDomainProperty="XMLNSC" waitInterval="15">
+        <translation xmi:type="utility:ConstantString" string="File Input"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFileOutput.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_2" location="530,254" outputDirectory="C:\WESBCONVERT\TARGET\ConvertedResourcesApp" outputFilename="defaultname.csv">
+        <translation xmi:type="utility:ConstantString" string="FileOutMap"/>
+      </nodes>
+      <nodes xmi:type="ComIbmCompute.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_6" location="214,137" computeExpression="esql://routine/#File_WESBMedFlowParseBuildMapDetail.Main" computeMode="destinationAndMessage">
+        <translation xmi:type="utility:ConstantString" string="ParseMedFlowBuildMapDetail"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_9" location="177,109" destination="file" filePath="c:\temp\trcInMedParse.txt" pattern="${Root}&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;">
+        <translation xmi:type="utility:ConstantString" string="TrcIn"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_10" location="462,204" destination="file" filePath="c:\temp\trcOutMedParse.txt" pattern="${Root}&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;">
+        <translation xmi:type="utility:ConstantString" string="TrcMOut"/>
+      </nodes>
+      <nodes xmi:type="ComIbmTrace.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_3" location="279,277" destination="file" filePath="c:\temp\trcErrMedParse.txt" pattern="${Root}&#xD;&#xA;${LocalEnvironment}&#xD;&#xA;">
+        <translation xmi:type="utility:ConstantString" string="TrcErr"/>
+      </nodes>
+      <nodes xmi:type="ComIbmFlowOrder.msgnode:FCMComposite_1" xmi:id="FCMComposite_1_4" location="334,204">
+        <translation xmi:type="utility:ConstantString" string="Flow Order"/>
+      </nodes>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_12" targetNode="FCMComposite_1_9" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_2" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_10" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_3" targetNode="FCMComposite_1_3" sourceNode="FCMComposite_1_1" sourceTerminalName="OutTerminal.catch" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_5" targetNode="FCMComposite_1_4" sourceNode="FCMComposite_1_6" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_6" targetNode="FCMComposite_1_10" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.first" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_7" targetNode="FCMComposite_1_2" sourceNode="FCMComposite_1_4" sourceTerminalName="OutTerminal.second" targetTerminalName="InTerminal.EOD"/>
+      <connections xmi:type="eflow:FCMConnection" xmi:id="FCMConnection_11" targetNode="FCMComposite_1_6" sourceNode="FCMComposite_1_9" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer/>
+    <stickyBoard/>
+  </eClassifiers>
+</ecore:EPackage>
