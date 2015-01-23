@@ -1,6 +1,8 @@
 # IIB-WESB-BOMAP-CONV
 WESB BO Map to IIB Graphical Map converstion utilities to accelerate the BO Map conversion
-#### Materials being prepared for publication - watch this space ####
+#
+Materials being prepared for publication - watch this space
+
 This utility uses IIB v9.0 message flows and ESQL to convert WESB BO Map files (XML) to IIB Graphical Data Mapper files (XML).
 There are two IIB workspaces provided.
 1) The CONVERTn workspace contains the IIB message flows that will perform the transformation of BO Map XML files to IBM GDM XML files. The messages flows use FileInput and FileOutput nodes to read and write the source and target XML files.
