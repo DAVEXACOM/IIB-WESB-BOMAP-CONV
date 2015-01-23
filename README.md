@@ -16,3 +16,7 @@ This utility is a work in progess and at this point in time it will attempt to d
 4) For simple maps that contain source to target moves only those moves/associations will be created.
 
 Therefore, at this point in time the utility represents a rudimentary capability that demonstrates how to navigate BO Map XML and create IIB GDM XML.
+
+Detailed documentation can be found in the PDFs located in the CONVMDocumentation folder. Sample test maps and data are provided.
+
+If you wish to contribute please email Dave - davearno@au1.ibm.com
