@@ -1,6 +1,6 @@
 # IIB-WESB-BOMAP-CONV
 WESB BO Map to IIB Graphical Map converstion utilities to accelerate the BO Map conversion
-#
+#### Materials being prepared for publication - watch this space ####
 This utility uses IIB v9.0 message flows and ESQL to convert WESB BO Map files (XML) to IIB Graphical Data Mapper files (XML).
 There are two IIB workspaces provided.
 1) The CONVERTn workspace contains the IIB message flows that will perform the transformation of BO Map XML files to IBM GDM XML files. The messages flows use FileInput and FileOutput nodes to read and write the source and target XML files.
@@ -30,6 +30,6 @@ The IIB WESB Conversion tool (shipped with IIB) will convert WESB mediations to 
 
 The ObjectAssociation pattern : This is an IIB pattern that includes Java code written to the IBM Integration API which allows for the programatic creation and manipulation of IIB objects such as message flows. The pattern is an example of how you might use the API to associate newly converted IIB GDM maps with IIB message flows converted from WESB mediations. This ObjectAssociation pattern could be extended to use the meta-data captured by the File_WESBMedFlowParseBuildMapDetail.msgflow.
 
-More detailed documentation can be found in the PDFs located in the CONVMDocumentation folder. Sample test maps and data are provided.
+More detailed documentation can be found in the PDFs located in the CONVDocumentation folder. Sample test maps and data are provided.
 
 If you wish to contribute please email Dave - davearno@au1.ibm.com
