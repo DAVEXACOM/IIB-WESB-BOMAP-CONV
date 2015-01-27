@@ -111,7 +111,7 @@ CREATE COMPUTE MODULE File_WESBMaptoGDMMap_BuildAMapFromWESBMap
 		IF CONTAINS(InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name, 'Blastblock') THEN
 			Set OutputRoot.XMLNSC.ns:mappingRoot.ns:mappingDeclaration.ns:output.(XMLNSC.Attribute)path = TYPE1||InputRoot.XMLNSC.ns6:businessObjectMap.ns6:outputBusinessObjectVariable.(XMLNSC.Attribute)name||TYPE2;									 		
 		END IF;
--- @@@@@@@@@@@DA BHP special case end @@@@@@@@@@DA --		
+-- @@@@@@@@@@@DA special case end @@@@@@@@@@DA --		
 
 --@DA loop through the MOVES in the map 
 
