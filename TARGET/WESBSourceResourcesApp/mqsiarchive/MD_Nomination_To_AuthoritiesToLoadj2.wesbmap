@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map:businessObjectMap xmlns:MD_Nomination_To_AuthoritiesToLoadj2="http://BP_1SAP_Publisher" xmlns:ServiceMessageObject="smo://smo/name%3Dwsdl-primary/transientContext%3D%257Bhttp%253A%252F%252FBP_1SAP_Publisher%257DtransientBO/correlationContext%3D%257Bhttp%253A%252F%252FLB_1SAPNomination_Publisher%252Fcom%252Fbhpbilliton%252Fwww%252Fwaio%252F_1SAPNomination%257DEnvelope/sharedContext%3D%257Bhttp%253A%252F%252FBP_1SAP_Publisher%257DSharedEnvelope/message%3D%257Bhttp%253A%252F%252FBP_1SAP_Publisher%252FIM_AuthoritiesToLoadGivenService%257DcreateprocessAuthoritiesToLoadRequestMsg/xpath%3D%252F/namespace%3DBOMap/types%3D%252Fcontext%252FprimitiveContext%252FFanOutContext%252Foccurrence%253D%257Bhttp%253A%252F%252Fwww.daltmines.com%252Fwaio%252F1SAPNomination%257DNominationItem/smo.xsd" xmlns:ServiceMessageObject_1="smo://smo/name%3Dwsdl-primary/transientContext%3D%257Bhttp%253A%252F%252FBP_1SAP_Publisher%257DtransientBO/correlationContext%3D%257Bhttp%253A%252F%252FLB_1SAPNomination_Publisher%252Fcom%252Fbhpbilliton%252Fwww%252Fwaio%252F_1SAPNomination%257DEnvelope/sharedContext%3D%257Bhttp%253A%252F%252FBP_1SAP_Publisher%257DSharedEnvelope/message%3D%257Bhttp%253A%252F%252Fwww.daltmines.com%252Fwaio%252F1SAPNomination_Publisher%252FAuthorityToLoadGivenService%252Fv1.0%257DpublishNominationDataRequestMsg/xpath%3D%252F/namespace%3DBOMap/types%3D%252Fcontext%252FprimitiveContext%252FFanOutContext%252Foccurrence%253D%257Bhttp%253A%252F%252Fwww.daltmines.com%252Fwaio%252F1SAPNomination%257DNominationItem/smo.xsd" xmlns:map="http://www.ibm.com/xmlns/prod/websphere/wbiserver/map/6.0.0" targetNamespace="http://BP_1SAP_Publisher">
+  <map:name>MD_Nomination_To_AuthoritiesToLoadj2</map:name>
+  <map:inputBusinessObjectVariable businessObjectRef="ServiceMessageObject_1:ServiceMessageObject" name="ServiceMessageObject"/>
+  <map:outputBusinessObjectVariable businessObjectRef="ServiceMessageObject:ServiceMessageObject" name="ServiceMessageObject_1"/>
+  <map:propertyMap executionOrder="2">
+    <map:move>
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="context/correlation"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="context/correlation"/>
+    </map:move>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="1">
+    <map:move>
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="context/primitiveContext/FanOutContext/occurrence"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="context/shared/NominationItem"/>
+    </map:move>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="6">
+    <map:customAssignment>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="body/createprocessAuthoritiesToLoad/AuthoritiesToLoad/AuthoritiesToLoad/AuthorityToLoad[1]/DateGranted"/>
+      <map:javaCode>java.util.Date __ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted = (java.util.Date)ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted;&#xD;
+java.util.Date __result__1;&#xD;
+{// current date and time&#xD;
+	__result__1 = new java.util.Date();&#xD;
+}&#xD;
+java.util.Date ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted = __result__1;&#xD;
+
+//@generated:com.ibm.wbit.activity.ui
+//&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>
+//&lt;com.ibm.wbit.activity:CompositeActivity xmi:version=&quot;2.0&quot; xmlns:xmi=&quot;http://www.omg.org/XMI&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:com.ibm.wbit.activity=&quot;http:///com/ibm/wbit/activity.ecore&quot; name=&quot;ActivityMethod&quot;>
+//  &lt;exceptions>
+//    &lt;type xsi:type=&quot;com.ibm.wbit.activity:JavaElementType&quot; name=&quot;java.lang.Exception&quot;/>
+//  &lt;/exceptions>
+//  &lt;executableElements xsi:type=&quot;com.ibm.wbit.activity:LibraryActivity&quot; name=&quot;current date and time&quot; description=&quot;The current date and time&quot; category=&quot;date&quot; template=&quot;&amp;lt;%return%> new java.util.Date();&quot;>
+//    &lt;result name=&quot;dateTimeNow&quot; displayName=&quot;date time now&quot;>
+//      &lt;dataOutputs target=&quot;//@executableElements.1&quot;/>
+//      &lt;type xsi:type=&quot;com.ibm.wbit.activity:JavaElementType&quot; name=&quot;java.util.Date&quot;/>
+//    &lt;/result>
+//  &lt;/executableElements>
+//  &lt;executableElements xsi:type=&quot;com.ibm.wbit.activity:Expression&quot; dataInputs=&quot;//@executableElements.0/@result/@dataOutputs.0&quot; value=&quot;ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted&quot; localVariable=&quot;//@localVariables.0&quot; variable=&quot;true&quot;>
+//    &lt;type xsi:type=&quot;com.ibm.wbit.activity:XSDElementType&quot; name=&quot;dateTime&quot; namespace=&quot;http://www.w3.org/2001/XMLSchema&quot;/>
+//  &lt;/executableElements>
+//  &lt;localVariables name=&quot;ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted&quot;>
+//    &lt;type xsi:type=&quot;com.ibm.wbit.activity:XSDElementType&quot; name=&quot;dateTime&quot; namespace=&quot;http://www.w3.org/2001/XMLSchema&quot;/>
+//  &lt;/localVariables>
+//  &lt;executableGroups executableElements=&quot;//@executableElements.0 //@executableElements.1&quot;/>
+//&lt;/com.ibm.wbit.activity:CompositeActivity>
+//@generated:end
+//!SMAP!*S WBIACTDBG&#xD;
+//!SMAP!*L&#xD;
+//!SMAP!1:2,4&#xD;
+//!SMAP!2:6,1&#xD;
+//!SMAP!1000000:34,1</map:javaCode>
+    </map:customAssignment>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="4">
+    <map:set value="1">
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="body/createprocessAuthoritiesToLoad/AuthoritiesToLoad/AuthoritiesToLoad/AuthorityToLoad[1]/NominationID"/>
+    </map:set>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="5">
+    <map:set value="1">
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="body/createprocessAuthoritiesToLoad/AuthoritiesToLoad/AuthoritiesToLoad/AuthorityToLoad[1]/GrantedBy"/>
+    </map:set>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="12">
+    <map:move>
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="context/shared/NominationItemEvent"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="context/shared/NominationItemEvent"/>
+    </map:move>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="15">
+    <map:move>
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="body/publishNominationData/Nomination/Header"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="context/shared/Nomination/Header"/>
+    </map:move>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="16">
+    <map:move>
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="body/publishNominationData/Nomination/Nomination"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="context/shared/Nomination/Nomination"/>
+    </map:move>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="13">
+    <map:move>
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="context/shared/AuthorityToLoad"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="context/shared/AuthorityToLoad"/>
+    </map:move>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="14">
+    <map:move>
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="context/shared/AuthoritiesToLoad"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="context/shared/AuthoritiesToLoad"/>
+    </map:move>
+  </map:propertyMap>
+<map:propertyMap executionOrder="17">
+    <map:customAssignment>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="body/createprocessAuthoritiesToLoad/AuthoritiesToLoad/AuthoritiesToLoad/AuthorityToLoad[1]/DateGranted"/>
+      <map:javaCode>java.util.Date __ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted = (java.util.Date)ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted;&#xD;
+java.util.Date __result__1;&#xD;
+{// @DA some more JAVA date and time&#xD;
+	__result__1 = new java.util.Date();&#xD;
+}&#xD;
+java.util.Date ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted = __result__1;&#xD;
+
+//@generated:com.ibm.wbit.activity.ui
+//&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?>
+//&lt;com.ibm.wbit.activity:CompositeActivity xmi:version=&quot;2.0&quot; xmlns:xmi=&quot;http://www.omg.org/XMI&quot; xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot; xmlns:com.ibm.wbit.activity=&quot;http:///com/ibm/wbit/activity.ecore&quot; name=&quot;ActivityMethod&quot;>
+//  &lt;exceptions>
+//    &lt;type xsi:type=&quot;com.ibm.wbit.activity:JavaElementType&quot; name=&quot;java.lang.Exception&quot;/>
+//  &lt;/exceptions>
+//  &lt;executableElements xsi:type=&quot;com.ibm.wbit.activity:LibraryActivity&quot; name=&quot;current date and time&quot; description=&quot;The current date and time&quot; category=&quot;date&quot; template=&quot;&amp;lt;%return%> new java.util.Date();&quot;>
+//    &lt;result name=&quot;dateTimeNow&quot; displayName=&quot;date time now&quot;>
+//      &lt;dataOutputs target=&quot;//@executableElements.1&quot;/>
+//      &lt;type xsi:type=&quot;com.ibm.wbit.activity:JavaElementType&quot; name=&quot;java.util.Date&quot;/>
+//    &lt;/result>
+//  &lt;/executableElements>
+//  &lt;executableElements xsi:type=&quot;com.ibm.wbit.activity:Expression&quot; dataInputs=&quot;//@executableElements.0/@result/@dataOutputs.0&quot; value=&quot;ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted&quot; localVariable=&quot;//@localVariables.0&quot; variable=&quot;true&quot;>
+//    &lt;type xsi:type=&quot;com.ibm.wbit.activity:XSDElementType&quot; name=&quot;dateTime&quot; namespace=&quot;http://www.w3.org/2001/XMLSchema&quot;/>
+//  &lt;/executableElements>
+//  &lt;localVariables name=&quot;ServiceMessageObject_1_body_createprocessAuthoritiesToLoad_AuthoritiesToLoad_AuthoritiesToLoad_AuthorityToLoad1_DateGranted&quot;>
+//    &lt;type xsi:type=&quot;com.ibm.wbit.activity:XSDElementType&quot; name=&quot;dateTime&quot; namespace=&quot;http://www.w3.org/2001/XMLSchema&quot;/>
+//  &lt;/localVariables>
+//  &lt;executableGroups executableElements=&quot;//@executableElements.0 //@executableElements.1&quot;/>
+//&lt;/com.ibm.wbit.activity:CompositeActivity>
+//@generated:end
+//!SMAP!*S WBIACTDBG&#xD;
+//!SMAP!*L&#xD;
+//!SMAP!1:2,4&#xD;
+//!SMAP!2:6,1&#xD;
+//!SMAP!1000000:34,1</map:javaCode>
+    </map:customAssignment>
+  </map:propertyMap>
+</map:businessObjectMap>

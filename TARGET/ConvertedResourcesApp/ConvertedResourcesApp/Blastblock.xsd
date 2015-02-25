@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://MQ2BlastblockNotificationPublisher/BlastblockCMM" xmlns:bons0="http://WAIODWStockPileNotificationSubscriber/CMM" xmlns:bons1="http://WAIODWBlastBlockNotificationSubscriber/CMM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:import namespace="http://WAIODWBlastBlockNotificationSubscriber/CMM" schemaLocation="OreTypeGeoType.xsd">
+	</xsd:import>
+	<xsd:import namespace="http://WAIODWStockPileNotificationSubscriber/CMM" schemaLocation="Bench.xsd">
+	</xsd:import>
+	<xsd:import namespace="http://WAIODWStockPileNotificationSubscriber/CMM" schemaLocation="Location.xsd">
+	</xsd:import>
+	<xsd:complexType name="Blastblock">
+		<xsd:complexContent>
+			<xsd:extension base="bons0:Location">
+				<xsd:sequence>
+				    <xsd:element maxOccurs="1" minOccurs="0" name="sourceSystemName" type="xsd:string"/>
+					<xsd:element maxOccurs="1" minOccurs="0" name="modifiedDate" type="xsd:dateTime"/>
+					<xsd:element minOccurs="0" name="sourceSystemId" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="businessId" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="extBusinessId" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="description" type="xsd:string"/>
+					<xsd:element minOccurs="0" name="previousStatus" type="xsd:string">
+					</xsd:element>
+					<xsd:element minOccurs="0" name="Status" type="xsd:string">
+					</xsd:element>
+					<xsd:element minOccurs="0" name="InitialDensity" type="xsd:string">
+					</xsd:element>
+					<xsd:element minOccurs="0" name="InitialTonnes" type="xsd:string">
+					</xsd:element>
+					<xsd:element minOccurs="0" name="initialBcm" type="xsd:string">
+					</xsd:element>
+					<xsd:element minOccurs="0" name="previousTonnes" type="xsd:string" />
+					<xsd:element maxOccurs="1" minOccurs="1" name="mineSubSiteCode"
+				     type="xsd:string" />
+					<xsd:element minOccurs="0" name="Bench" type="bons0:Bench">
+					</xsd:element>
+					<xsd:element minOccurs="0" name="OreTypeGeoType" type="bons1:OreTypeGeoType">
+					</xsd:element>
+
+				</xsd:sequence>
+
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	targetNamespace="http://daltmines.net/services"
+	xmlns="http://daltmines.net/services"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:include schemaLocation="mesBlastBlockDetailType.xsd" />
+	<xs:complexType name="mesBlastBlockMessageType">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="1"
+				name="sourceSystemName" type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="1" name="modifiedDate"
+				type="xs:dateTime" />
+			<xs:element maxOccurs="1" minOccurs="1"
+				name="mesBlastBlockDetail" type="mesBlastBlockDetailType" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

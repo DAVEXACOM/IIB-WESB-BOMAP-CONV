@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map:businessObjectMap xmlns:BlastblockCMM="http://MQ2BlastblockNotificationPublisher/BlastblockCMM" xmlns:MD_mesBlastBlockMessage_To_BlastblockCMM="http://MM_MQ2_Publisher_V1.2" xmlns:map="http://www.ibm.com/xmlns/prod/websphere/wbiserver/map/6.0.0" xmlns:mesBlastBlockMessage="http://daltmines.net/services" targetNamespace="http://MM_MQ2_Publisher_V1.2">
+  <map:name>MD_mesBlastBlockMessage_To_BlastblockCMM</map:name>
+  <map:inputBusinessObjectVariable businessObjectRef="mesBlastBlockMessage:mesBlastBlockMessage" name="mesBlastBlockMessage"/>
+  <map:outputBusinessObjectVariable businessObjectRef="BlastblockCMM:BlastblockCMM" name="BlastblockCMM"/>
+  <map:propertyMap executionOrder="1">
+    <map:submap submapName="MD_mesBlastBlockMessage_To_BlastblockCMM:MD_mesBlastBlockMessageType_To_Blastblock_Submap">
+      <map:input businessObjectVariableRef="mesBlastBlockMessage" property="mesBlastBlockMessages" variableName="mesBlastBlockMessageType"/>
+      <map:output businessObjectVariableRef="BlastblockCMM" property="Blastblock" variableName="Blastblock"/>
+    </map:submap>
+  </map:propertyMap>
+</map:businessObjectMap>

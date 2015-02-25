@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mfc:interfaceMediationFlow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mfc="http://www.ibm.com/xmlns/prod/websphere/wbiserver/mfc/6.0.0" xmlns:ns1="http://www.daltmines.com/waio/MasterDataService/BlastBlockNotificationAdapterPublisher/v1.0" xmlns:ns2="http://www.daltmines.com/waio/MasterDataService/BlastblockNotificationService/v1.0" xmlns:ns3="http://www.daltmines.com/icc/foundation/interfaces/error/v1/" xmlns:ns4="http://www.daltmines.com/icc/foundation/interfaces/context/v1/" xmlns:ns5="http://www.daltmines.com/icc/foundation/interfaces/log/v1/" xmlns:v1.0="http://www.daltmines.com/waio/MasterDataService/BlastblockNotificationAdapterPublisher/v1.0" xmlns:wsdl="http://www.ibm.com/xmlns/prod/websphere/scdl/wsdl/6.0.0" name="MF_BlastblockStatusChangedPublisher" targetNamespace="http://MM_MQ2_Publisher_V1.2/MF_BlastblockNotificationAdapterPublisher">
+  <interfaces>
+    <interface xsi:type="wsdl:WSDLPortType" portType="v1.0:IM_BlastblockNotificationAdapterPublisher"/>
+  </interfaces>
+  <references>
+    <reference name="IM_BlastblockNotificationServicePartner">
+      <interface xsi:type="wsdl:WSDLPortType" portType="ns2:IM_BlastblockNotificationService"/>
+    </reference>
+  </references>
+  <extendedOperationBinding source="createBlastblockNotification" target="publishBlastblockNotification" sourcePortType="v1.0:IM_BlastblockNotificationAdapterPublisher" targetReference="IM_BlastblockNotificationServicePartner"/>
+  <operationFlow medflow="MF_BlastblockStatusChangedPublisher.medflow"/>
+</mfc:interfaceMediationFlow>

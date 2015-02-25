@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:BOMapper.mednode="mednode://mednodes/BOMapper.mednode/BOMapper" xmlns:Fail.mednode="mednode://mednodes/Fail.mednode/Fail" xmlns:Input.mednode="mednode://mednodes/Input.mednode/Input" xmlns:MF_BlastblockStatusChangedPublisher.medflow="MF_BlastblockStatusChangedPublisher.medflow" xmlns:ServiceInvoke.mednode="mednode://mednodes/ServiceInvoke.mednode/ServiceInvoke" xmlns:Subflow.mednode="mednode://mednodes/Subflow.mednode/Subflow" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:eflow2="http://www.ibm.com/2006/eflow" xmlns:type="http://www.ibm.com/2006/eflow/type" xmlns:utility="http://www.ibm.com/2006/eflow/utility" name="root" nsURI="MF_BlastblockStatusChangedPublisher.medflow" nsPrefix="MF_BlastblockStatusChangedPublisher.medflow">
+  <eClassifiers xmi:type="eflow2:FCMComposite" name="root_I_2">
+    <eSuperTypes href="http://www.ibm.com/2006/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.name" name="name" lowerBound="1" defaultValueLiteral="">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <composition>
+      <type xmi:type="type:CompositeType" xmi:id="CompositeType_1">
+        <elements id="message">
+          <type xmi:type="type:WSDLMessageType" wsdlMessage="{http://www.daltmines.com/waio/MasterDataService/BlastblockNotificationAdapterPublisher/v1.0}createBlastblockNotificationRequestMsg"/>
+        </elements>
+      </type>
+      <type xmi:type="type:CompositeType" xmi:id="CompositeType_2">
+        <elements id="message">
+          <type xmi:type="type:WSDLMessageType" wsdlMessage="{http://www.daltmines.com/waio/MasterDataService/BlastblockNotificationService/v1.0}publishBlastblockNotificationRequestMsg"/>
+        </elements>
+      </type>
+      <nodes xmi:type="Input.mednode:Input" xmi:id="Input_1" name="IM_BlastblockNotificationAdapterPublisher_createBlastblockNotification_Input">
+        <location x="10" y="110"/>
+        <outTerminals terminalNodeID="OutTerminal.out" explicitType="true" type="CompositeType_1"/>
+        <translation xmi:type="utility:ConstantString" string="createBlastblockNotification : IM_BlastblockNotificationAdapterPublisher"/>
+      </nodes>
+      <nodes xmi:type="BOMapper.mednode:BOMapper" xmi:id="BOMapper_1" name="MD_mesBlastBlockMessage_To_BlastblockCMM_PUB" root="/" mappingFile="MD_mesBlastBlockMessage_To_BlastblockCMM_PUB.map">
+        <location x="407" y="110"/>
+        <outTerminals terminalNodeID="OutTerminal.out" explicitType="true" type="CompositeType_2"/>
+        <outTerminals terminalNodeID="OutTerminal.Failure" type="CompositeType_1"/>
+        <inTerminals terminalNodeID="InTerminal.in" explicitType="true" type="CompositeType_1"/>
+        <translation xmi:type="utility:ConstantString" string="MD_mesBlastBlockMessage_To_BlastblockCMM_PUB"/>
+      </nodes>
+      <nodes xmi:type="Fail.mednode:Fail" xmi:id="Fail_1" name="ICCLog_SF_Fail">
+        <location x="692" y="122"/>
+        <inTerminals terminalNodeID="InTerminal.in" type="CompositeType_1"/>
+        <translation xmi:type="utility:ConstantString" string="ICCLog_SF_Fail"/>
+      </nodes>
+      <nodes xmi:type="Fail.mednode:Fail" xmi:id="Fail_2" name="ICCLog_SF_Fail1">
+        <location x="1019" y="20"/>
+        <inTerminals terminalNodeID="InTerminal.in" type="CompositeType_2"/>
+        <translation xmi:type="utility:ConstantString" string="ICCLog_SF_Fail"/>
+      </nodes>
+      <nodes xmi:type="ServiceInvoke.mednode:ServiceInvoke" xmi:id="ServiceInvoke_1" name="Invoke_publishBlastblockNotification" referenceName="IM_BlastblockNotificationServicePartner" operationName="publishBlastblockNotification">
+        <location x="788" y="20"/>
+        <outTerminals terminalNodeID="OutTerminal.timeout" explicitType="true" type="CompositeType_2"/>
+        <outTerminals terminalNodeID="OutTerminal.Failure" type="CompositeType_2"/>
+        <inTerminals terminalNodeID="InTerminal.in" explicitType="true" type="CompositeType_2"/>
+        <translation xmi:type="utility:ConstantString" string="Invoke_publishBlastblockNotification"/>
+      </nodes>
+      <nodes xmi:type="Subflow.mednode:Subflow" xmi:id="Subflow_1" name="ICCLog_SF2" subflowFile="subflows/ICCLog_SF.subflow" subflowName="{http://FSELVisualSnippet/subflows}ICCLog_SF" properties.name="ICCLog_CM.ApplicationValue^ICCLog_CM.ParentComponent^ICCLog_CM.SubComponent^ICCLog_CM.BtxnId^ICCLog_CM.CorrelationId^ICCLog_CM.ECSParentId^ICCLog_CM.ECSCurrentId^ICCLog_CM.LogPoint^ICCLog_CM.Severity^ICCLog_CM.ErrorCode^ICCLog_CM.ErrorMessage^ICCLog_CM.PartOfPayload^ICCLog_CM.Source^ICCLog_CM.Target" properties.type="STRING^STRING^STRING^XPATH^XPATH^STRING^STRING^STRING^STRING^STRING^STRING^STRING^XPATH^XPATH" properties.value="Inventory_Management^BlastblockNotificationAdapterPublisher^createBlastblockNotification^%2Fbody%2FcreateBlastblockNotification%2FContext%2FBTxnID^%2Fbody%2FcreateBlastblockNotification%2FContext%2FCorrelationID^^^RequestEntry^DEBUG^ICC3001^BlastblockNotificationPublisher+received+the+mesBlastBlockMessage+Message.^ROOT^%2Fbody%2FcreateBlastblockNotification%2FContext%2FSourceName^%2Fbody%2FcreateBlastblockNotification%2FContext%2FTargetName">
+        <location x="326" y="110"/>
+        <outTerminals terminalNodeID="OutTerminal.Failure" type="CompositeType_1"/>
+        <outTerminals terminalNodeID="OutTerminal.dynamic:out:out" dynamic="true" label="out" longDescription="The Out node is the end point for the subflow." type="CompositeType_1"/>
+        <inTerminals terminalNodeID="InTerminal.dynamic:in:in" dynamic="true" label="in" longDescription="The In node is the starting point for the subflow." type="CompositeType_1"/>
+        <translation xmi:type="utility:ConstantString" string="ICCLog_SF"/>
+      </nodes>
+      <nodes xmi:type="Subflow.mednode:Subflow" xmi:id="Subflow_2" name="ICCLog_SF" subflowFile="subflows/ICCLog_SF.subflow" subflowName="{http://FSELVisualSnippet/subflows}ICCLog_SF" properties.name="ICCLog_CM.ApplicationValue^ICCLog_CM.ParentComponent^ICCLog_CM.SubComponent^ICCLog_CM.BtxnId^ICCLog_CM.CorrelationId^ICCLog_CM.ECSParentId^ICCLog_CM.ECSCurrentId^ICCLog_CM.LogPoint^ICCLog_CM.Severity^ICCLog_CM.ErrorCode^ICCLog_CM.ErrorMessage^ICCLog_CM.PartOfPayload^ICCLog_CM.Source^ICCLog_CM.Target" properties.type="STRING^STRING^STRING^XPATH^XPATH^STRING^STRING^STRING^STRING^STRING^STRING^STRING^XPATH^XPATH" properties.value="Inventory_Management^BlastblockNotificationAdapterPublisher^createBlastblockNotification^%2Fbody%2FcreateBlastblockNotification%2FContext%2FBTxnID^%2Fbody%2FcreateBlastblockNotification%2FContext%2FCorrelationID^^^ErrorExit^ERROR^ICC6001^BlastblockNotificationPublisher+has+encountered+an+error+while+transforming+the+message.^ROOT^%2Fbody%2FcreateBlastblockNotification%2FContext%2FSourceName^%2Fbody%2FcreateBlastblockNotification%2FContext%2FTargetName">
+        <location x="552" y="122"/>
+        <outTerminals terminalNodeID="OutTerminal.Failure" type="CompositeType_1"/>
+        <outTerminals terminalNodeID="OutTerminal.dynamic:out:out" dynamic="true" label="out" longDescription="The Out node is the end point for the subflow." type="CompositeType_1"/>
+        <inTerminals terminalNodeID="InTerminal.dynamic:in:in" dynamic="true" label="in" longDescription="The In node is the starting point for the subflow." type="CompositeType_1"/>
+        <translation xmi:type="utility:ConstantString" string="ICCLog_SF"/>
+      </nodes>
+      <nodes xmi:type="Subflow.mednode:Subflow" xmi:id="Subflow_3" name="ICCLog_SF3" subflowFile="subflows/ICCLog_SF.subflow" subflowName="{http://FSELVisualSnippet/subflows}ICCLog_SF" properties.name="ICCLog_CM.ApplicationValue^ICCLog_CM.ParentComponent^ICCLog_CM.SubComponent^ICCLog_CM.BtxnId^ICCLog_CM.CorrelationId^ICCLog_CM.ECSParentId^ICCLog_CM.ECSCurrentId^ICCLog_CM.LogPoint^ICCLog_CM.Severity^ICCLog_CM.ErrorCode^ICCLog_CM.ErrorMessage^ICCLog_CM.PartOfPayload^ICCLog_CM.Source^ICCLog_CM.Target" properties.type="STRING^STRING^STRING^XPATH^XPATH^STRING^STRING^STRING^STRING^STRING^STRING^STRING^XPATH^XPATH" properties.value="Inventory_Management^BlastblockNotificationAdapterPublisher^createBlastblockNotification^%2Fbody%2FpublishBlastblockNotification%2FContext%2FBTxnID^%2Fbody%2FpublishBlastblockNotification%2FContext%2FCorrelationID^^^ErrorExit^ERROR^ICC5001^BlastblockNotificationPublisher+has+encountered+timeout+exception+while+invoking+Stateless+Service.^ROOT^%2Fbody%2FpublishBlastblockNotification%2FContext%2FSourceName^%2Fbody%2FpublishBlastblockNotification%2FContext%2FTargetName">
+        <location x="933" y="20"/>
+        <outTerminals terminalNodeID="OutTerminal.Failure" type="CompositeType_2"/>
+        <outTerminals terminalNodeID="OutTerminal.dynamic:out:out" dynamic="true" label="out" longDescription="The Out node is the end point for the subflow." type="CompositeType_2"/>
+        <inTerminals terminalNodeID="InTerminal.dynamic:in:in" dynamic="true" label="in" longDescription="The In node is the starting point for the subflow." type="CompositeType_2"/>
+        <translation xmi:type="utility:ConstantString" string="ICCLog_SF"/>
+      </nodes>
+      <nodes xmi:type="Subflow.mednode:Subflow" xmi:id="Subflow_4" name="ICCLog_SF4" subflowFile="subflows/ICCLog_SF.subflow" subflowName="{http://FSELVisualSnippet/subflows}ICCLog_SF" properties.name="ICCLog_CM.ApplicationValue^ICCLog_CM.ParentComponent^ICCLog_CM.SubComponent^ICCLog_CM.BtxnId^ICCLog_CM.CorrelationId^ICCLog_CM.ECSParentId^ICCLog_CM.ECSCurrentId^ICCLog_CM.LogPoint^ICCLog_CM.Severity^ICCLog_CM.ErrorCode^ICCLog_CM.ErrorMessage^ICCLog_CM.PartOfPayload^ICCLog_CM.Source^ICCLog_CM.Target" properties.type="STRING^STRING^STRING^XPATH^XPATH^STRING^STRING^STRING^STRING^STRING^STRING^STRING^XPATH^XPATH" properties.value="Inventory_Management^BlastblockNotificationAdapterPublisher^createBlastblockNotification^%2Fbody%2FpublishBlastblockNotification%2FContext%2FBTxnID^%2Fbody%2FpublishBlastblockNotification%2FContext%2FCorrelationID^^^RequestExit^DEBUG^ICC3002^BlastblockNotificationPublisher+sending+the+mesBlastBlockMessage+Message+to+Stateless+Service.^ROOT^%2Fbody%2FpublishBlastblockNotification%2FContext%2FSourceName^%2Fbody%2FpublishBlastblockNotification%2FContext%2FTargetName">
+        <location x="692" y="20"/>
+        <outTerminals terminalNodeID="OutTerminal.Failure" type="CompositeType_2"/>
+        <outTerminals terminalNodeID="OutTerminal.dynamic:out:out" dynamic="true" label="out" longDescription="The Out node is the end point for the subflow." type="CompositeType_2"/>
+        <inTerminals terminalNodeID="InTerminal.dynamic:in:in" dynamic="true" label="in" longDescription="The In node is the starting point for the subflow." type="CompositeType_2"/>
+        <translation xmi:type="utility:ConstantString" string="ICCLog_SF"/>
+      </nodes>
+      <nodes xmi:type="Fail.mednode:Fail" xmi:id="Fail_3" name="ICCLog_SF_Fail2">
+        <location x="1019" y="122"/>
+        <inTerminals terminalNodeID="InTerminal.in" type="CompositeType_2"/>
+        <translation xmi:type="utility:ConstantString" string="ICCLog_SF_Fail"/>
+      </nodes>
+      <nodes xmi:type="Subflow.mednode:Subflow" xmi:id="Subflow_5" name="ICCLog_SF1" subflowFile="subflows/ICCLog_SF.subflow" subflowName="{http://FSELVisualSnippet/subflows}ICCLog_SF" properties.name="ICCLog_CM.ApplicationValue^ICCLog_CM.ParentComponent^ICCLog_CM.SubComponent^ICCLog_CM.BtxnId^ICCLog_CM.CorrelationId^ICCLog_CM.ECSParentId^ICCLog_CM.ECSCurrentId^ICCLog_CM.LogPoint^ICCLog_CM.Severity^ICCLog_CM.ErrorCode^ICCLog_CM.ErrorMessage^ICCLog_CM.PartOfPayload^ICCLog_CM.Source^ICCLog_CM.Target" properties.type="STRING^STRING^STRING^XPATH^XPATH^STRING^STRING^STRING^STRING^STRING^STRING^STRING^XPATH^XPATH" properties.value="Inventory_Management^BlastblockNotificationAdapterPublisher^createBlastblockNotification^%2Fbody%2FpublishBlastblockNotification%2FContext%2FBTxnID^%2Fbody%2FpublishBlastblockNotification%2FContext%2FCorrelationID^^^ErrorExit^ERROR^ICC5101^BlastblockNotificationPublisher+has+encountered+an+exception+while+invoking+the+Stateless+Service.^ROOT^%2Fbody%2FpublishBlastblockNotification%2FContext%2FSourceName^%2Fbody%2FpublishBlastblockNotification%2FContext%2FTargetName">
+        <location x="931" y="128"/>
+        <outTerminals terminalNodeID="OutTerminal.Failure" type="CompositeType_2"/>
+        <outTerminals terminalNodeID="OutTerminal.dynamic:out:out" dynamic="true" label="out" longDescription="The Out node is the end point for the subflow." type="CompositeType_2"/>
+        <inTerminals terminalNodeID="InTerminal.dynamic:in:in" dynamic="true" label="in" longDescription="The In node is the starting point for the subflow." type="CompositeType_2"/>
+        <translation xmi:type="utility:ConstantString" string="ICCLog_SF"/>
+      </nodes>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_1" targetNode="Subflow_1" sourceNode="Input_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.dynamic:in:in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_2" targetNode="Subflow_4" sourceNode="BOMapper_1" sourceTerminalName="OutTerminal.out" targetTerminalName="InTerminal.dynamic:in:in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_3" targetNode="Subflow_2" sourceNode="BOMapper_1" sourceTerminalName="OutTerminal.Failure" targetTerminalName="InTerminal.dynamic:in:in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_4" targetNode="Subflow_3" sourceNode="ServiceInvoke_1" sourceTerminalName="OutTerminal.timeout" targetTerminalName="InTerminal.dynamic:in:in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_5" targetNode="Subflow_5" sourceNode="ServiceInvoke_1" sourceTerminalName="OutTerminal.Failure" targetTerminalName="InTerminal.dynamic:in:in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_6" targetNode="BOMapper_1" sourceNode="Subflow_1" sourceTerminalName="OutTerminal.dynamic:out:out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_7" targetNode="Fail_1" sourceNode="Subflow_2" sourceTerminalName="OutTerminal.dynamic:out:out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_8" targetNode="Fail_1" sourceNode="Subflow_2" sourceTerminalName="OutTerminal.Failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_9" targetNode="Fail_2" sourceNode="Subflow_3" sourceTerminalName="OutTerminal.dynamic:out:out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_10" targetNode="Fail_2" sourceNode="Subflow_3" sourceTerminalName="OutTerminal.Failure" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_11" targetNode="ServiceInvoke_1" sourceNode="Subflow_4" sourceTerminalName="OutTerminal.dynamic:out:out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_12" targetNode="Fail_3" sourceNode="Subflow_5" sourceTerminalName="OutTerminal.dynamic:out:out" targetTerminalName="InTerminal.in"/>
+      <connections xmi:type="eflow2:FCMConnection" xmi:id="FCMConnection_13" targetNode="Fail_3" sourceNode="Subflow_5" sourceTerminalName="OutTerminal.Failure" targetTerminalName="InTerminal.in"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="basic" describedAttribute="Property.name"/>
+    </propertyOrganizer>
+  </eClassifiers>
+  <eClassifiers xmi:type="eflow2:FCMComposite" name="root">
+    <eSuperTypes href="http://www.ibm.com/2006/eflow#//FCMBlock"/>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ICCLog_SF3.properties" name="ICCLog_SF3.properties" defaultValueLiteral="ErrorExit">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ICCLog_SF.properties1" name="ICCLog_SF.properties1" defaultValueLiteral="ERROR">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ICCLog_SF1.properties" name="ICCLog_SF1.properties" defaultValueLiteral="RequestEntry">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ICCLog_SF.properties" name="ICCLog_SF.properties" defaultValueLiteral="ErrorExit">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ICCLog_SF1.properties1" name="ICCLog_SF1.properties1" defaultValueLiteral="DEBUG">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ICCLog_SF1.properties2" name="ICCLog_SF1.properties2" defaultValueLiteral="ErrorExit">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ICCLog_SF1.properties3" name="ICCLog_SF1.properties3" defaultValueLiteral="ERROR">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="Property.ICCLog_SF3.properties1" name="ICCLog_SF3.properties1" defaultValueLiteral="ERROR">
+      <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eStructuralFeatures>
+    <composition>
+      <nodes xmi:type="MF_BlastblockStatusChangedPublisher.medflow:root_I_2" xmi:id="root_I_2_1" name="{http://www.daltmines.com/waio/MasterDataService/BlastblockNotificationAdapterPublisher/v1.0}IM_BlastblockNotificationAdapterPublisher:createBlastblockNotification::request"/>
+    </composition>
+    <propertyOrganizer>
+      <propertyDescriptor groupName="MM_MQ2_Publisher_V1.2.MF_BlastblockNotificationAdapterPublisher" describedAttribute="Property.ICCLog_SF1.properties">
+        <description xmi:type="utility:ConstantString" string=""/>
+        <propertyDescriptor groupName="MM_MQ2_Publisher_V1.2.MF_BlastblockNotificationAdapterPublisher" describedAttribute="Property.ICCLog_SF1.properties1">
+          <description xmi:type="utility:ConstantString" string=""/>
+          <propertyDescriptor groupName="MM_MQ2_Publisher_V1.2.MF_BlastblockNotificationAdapterPublisher" describedAttribute="Property.ICCLog_SF.properties">
+            <description xmi:type="utility:ConstantString" string=""/>
+            <propertyDescriptor groupName="MM_MQ2_Publisher_V1.2.MF_BlastblockNotificationAdapterPublisher" describedAttribute="Property.ICCLog_SF.properties1">
+              <description xmi:type="utility:ConstantString" string=""/>
+              <propertyDescriptor groupName="MM_MQ2_Publisher_V1.2.MF_BlastblockNotificationAdapterPublisher" describedAttribute="Property.ICCLog_SF3.properties">
+                <description xmi:type="utility:ConstantString" string=""/>
+                <propertyDescriptor groupName="MM_MQ2_Publisher_V1.2.MF_BlastblockNotificationAdapterPublisher" describedAttribute="Property.ICCLog_SF3.properties1">
+                  <description xmi:type="utility:ConstantString" string=""/>
+                  <propertyDescriptor groupName="MM_MQ2_Publisher_V1.2.MF_BlastblockNotificationAdapterPublisher" describedAttribute="Property.ICCLog_SF1.properties2">
+                    <description xmi:type="utility:ConstantString" string=""/>
+                    <propertyDescriptor groupName="MM_MQ2_Publisher_V1.2.MF_BlastblockNotificationAdapterPublisher" describedAttribute="Property.ICCLog_SF1.properties3">
+                      <description xmi:type="utility:ConstantString" string=""/>
+                    </propertyDescriptor>
+                  </propertyDescriptor>
+                </propertyDescriptor>
+              </propertyDescriptor>
+            </propertyDescriptor>
+          </propertyDescriptor>
+        </propertyDescriptor>
+      </propertyDescriptor>
+    </propertyOrganizer>
+    <attributeLinks xmi:type="eflow2:FCMCellPromotedAttributeLink" promotedAttribute="Property.ICCLog_SF1.properties" overriddenNodes="Subflow_1" column="3" row="8">
+      <overriddenAttribute href="mednode://mednodes/Subflow.mednode/Subflow#Property.properties.value"/>
+    </attributeLinks>
+    <attributeLinks xmi:type="eflow2:FCMCellPromotedAttributeLink" promotedAttribute="Property.ICCLog_SF1.properties1" overriddenNodes="Subflow_1" column="3" row="9">
+      <overriddenAttribute href="mednode://mednodes/Subflow.mednode/Subflow#Property.properties.value"/>
+    </attributeLinks>
+    <attributeLinks xmi:type="eflow2:FCMCellPromotedAttributeLink" promotedAttribute="Property.ICCLog_SF.properties" overriddenNodes="Subflow_2" column="3" row="8">
+      <overriddenAttribute href="mednode://mednodes/Subflow.mednode/Subflow#Property.properties.value"/>
+    </attributeLinks>
+    <attributeLinks xmi:type="eflow2:FCMCellPromotedAttributeLink" promotedAttribute="Property.ICCLog_SF.properties1" overriddenNodes="Subflow_2" column="3" row="9">
+      <overriddenAttribute href="mednode://mednodes/Subflow.mednode/Subflow#Property.properties.value"/>
+    </attributeLinks>
+    <attributeLinks xmi:type="eflow2:FCMCellPromotedAttributeLink" promotedAttribute="Property.ICCLog_SF3.properties" overriddenNodes="Subflow_3" column="3" row="8">
+      <overriddenAttribute href="mednode://mednodes/Subflow.mednode/Subflow#Property.properties.value"/>
+    </attributeLinks>
+    <attributeLinks xmi:type="eflow2:FCMCellPromotedAttributeLink" promotedAttribute="Property.ICCLog_SF3.properties1" overriddenNodes="Subflow_3" column="3" row="9">
+      <overriddenAttribute href="mednode://mednodes/Subflow.mednode/Subflow#Property.properties.value"/>
+    </attributeLinks>
+    <attributeLinks xmi:type="eflow2:FCMCellPromotedAttributeLink" promotedAttribute="Property.ICCLog_SF1.properties2" overriddenNodes="Subflow_5" column="3" row="8">
+      <overriddenAttribute href="mednode://mednodes/Subflow.mednode/Subflow#Property.properties.value"/>
+    </attributeLinks>
+    <attributeLinks xmi:type="eflow2:FCMCellPromotedAttributeLink" promotedAttribute="Property.ICCLog_SF1.properties3" overriddenNodes="Subflow_5" column="3" row="9">
+      <overriddenAttribute href="mednode://mednodes/Subflow.mednode/Subflow#Property.properties.value"/>
+    </attributeLinks>
+  </eClassifiers>
+</ecore:EPackage>

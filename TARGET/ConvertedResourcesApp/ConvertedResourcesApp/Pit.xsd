@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?><xsd:schema targetNamespace="http://WAIODWStockPileNotificationSubscriber/CMM" xmlns:bons0="http://WAIODWStockPileNotificationSubscriber/CMM" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:include schemaLocation="Mine.xsd"/>
+	<xsd:include schemaLocation="Location.xsd"/>
+	<xsd:complexType name="Pit">
+		<xsd:complexContent>
+			<xsd:extension base="bons0:Location">
+				<xsd:sequence>
+					<xsd:element minOccurs="0" name="Mine" type="bons0:Mine">
+					</xsd:element>
+
+				</xsd:sequence>
+
+			</xsd:extension>
+		</xsd:complexContent>
+	</xsd:complexType>
+</xsd:schema>

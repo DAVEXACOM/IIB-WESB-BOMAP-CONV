@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified"
+	elementFormDefault="qualified"
+	targetNamespace="http://daltmines.net/services"
+	xmlns="http://daltmines.net/services"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="mesStockpileDetailType">
+		<xs:sequence>
+			<xs:element maxOccurs="1" minOccurs="1"
+				name="sourceSystemId" type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="1" name="siteCode"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="subSiteCode"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="1" name="businessId"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="1" name="extBusinessId"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="description"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="1" name="type"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="category"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="buildStatus"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="accessStatus"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="footprintCode"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="areaCode"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="yardCode"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0"
+				name="defaultProductCode" type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="productSize"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0"
+				name="blendingAlgorithm" type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="createDate"
+				type="xs:dateTime" />
+			<xs:element maxOccurs="1" minOccurs="0"
+				name="firstStackedDate" type="xs:dateTime" />
+			<xs:element maxOccurs="1" minOccurs="0"
+				name="lastStackedDate" type="xs:dateTime" />
+			<xs:element maxOccurs="1" minOccurs="0" name="startMeters"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="endMeters"
+				type="xs:string" />
+			<xs:element maxOccurs="1" minOccurs="0" name="active"
+				type="xs:boolean" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

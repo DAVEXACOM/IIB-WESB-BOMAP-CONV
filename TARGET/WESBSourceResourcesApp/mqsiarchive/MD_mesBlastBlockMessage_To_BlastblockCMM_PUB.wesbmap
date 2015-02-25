@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><map:businessObjectMap targetNamespace="http://MM_MQ2_Publisher_V1.2" xmlns:MD_mesBlastBlockMessage_To_BlastblockCMM_PUB="http://MM_MQ2_Publisher_V1.2" xmlns:ServiceMessageObject="smo://smo/name%3Dwsdl-primary/message%3D%257Bhttp%253A%252F%252Fwww.daltmines.com%252Fwaio%252FMasterDataService%252FBlastblockNotificationService%252Fv1.0%257DpublishBlastblockNotificationRequestMsg/xpath%3D%252F/smo.xsd" xmlns:ServiceMessageObject_1="smo://smo/name%3Dwsdl-primary/message%3D%257Bhttp%253A%252F%252Fwww.daltmines.com%252Fwaio%252FMasterDataService%252FBlastBlockNotificationAdapterPublisher%252Fv1.0%257DcreateBlastblockNotificationRequestMsg/xpath%3D%252F/namespace%3DBOMap/smo.xsd" xmlns:ServiceMessageObject_1_1="smo://smo/name%3Dwsdl-primary/message%3D%257Bhttp%253A%252F%252Fwww.daltmines.com%252Fwaio%252FMasterDataService%252FBlastblockNotificationAdapterPublisher%252Fv1.0%257DcreateBlastblockNotificationRequestMsg/xpath%3D%252F/smo.xsd" xmlns:map="http://www.ibm.com/xmlns/prod/websphere/wbiserver/map/6.0.0">
+  <map:name>MD_mesBlastBlockMessage_To_BlastblockCMM_PUB</map:name>
+  <map:inputBusinessObjectVariable businessObjectRef="ServiceMessageObject_1_1:ServiceMessageObject" name="ServiceMessageObject"/>
+  <map:outputBusinessObjectVariable businessObjectRef="ServiceMessageObject:ServiceMessageObject" name="ServiceMessageObject_1"/>
+  <map:propertyMap executionOrder="1">
+    <map:submap submapName="MD_mesBlastBlockMessage_To_BlastblockCMM_PUB:MD_mesBlastBlockMessage_To_BlastblockCMM">
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="body/createBlastblockNotification/mesBlastBlockMessage" variableName="mesBlastBlockMessage"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="body/publishBlastblockNotification/mesBlastBlockMessage" variableName="BlastblockCMM"/>
+    </map:submap>
+  </map:propertyMap>
+  <map:propertyMap executionOrder="2">
+    <map:move>
+      <map:input businessObjectVariableRef="ServiceMessageObject" property="body/createBlastblockNotification/Context"/>
+      <map:output businessObjectVariableRef="ServiceMessageObject_1" property="body/publishBlastblockNotification/Context"/>
+    </map:move>
+  </map:propertyMap>
+</map:businessObjectMap>

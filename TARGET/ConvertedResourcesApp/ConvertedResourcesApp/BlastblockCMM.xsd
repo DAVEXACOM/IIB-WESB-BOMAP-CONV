@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Version 1.4 -->
+<!-- The schema was missing the previousTonnes field.  The element is placed in the Blastblock.xsd -->
+<!-- Version 1.3 -->
+<!-- Included Elements specific to MQ2 and SOC such as sourceSystemID, sourceSystemName -->
+<xsd:schema
+	targetNamespace="http://MQ2BlastblockNotificationPublisher/BlastblockCMM"
+	xmlns:bons0="http://MQ2BlastblockNotificationPublisher/BlastblockCMM"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+	<xsd:include schemaLocation="Blastblock.xsd" />
+	<xsd:complexType name="BlastblockCMM">
+		<xsd:sequence>
+				<xsd:element maxOccurs="unbounded" minOccurs="0"
+				name="Blastblock" type="bons0:Blastblock">
+			</xsd:element>
+		</xsd:sequence>
+	</xsd:complexType>
+	<xsd:element name="BlastblockNotification"
+		type="bons0:BlastblockCMM" />
+</xsd:schema>
+
+
