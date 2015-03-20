@@ -1,7 +1,6 @@
 # IIB-WESB-BOMAP-CONV
-WESB BO Map to IIB Graphical Map converstion utilities to accelerate the BO Map conversion
+WESB BO Map to IIB Graphical Map conversion utilities to accelerate the BO Map conversion
 #
-Materials being prepared for publication - watch this space
 
 This utility uses IIB v9.0 message flows and ESQL to convert WESB BO Map files (XML) to IIB Graphical Data Mapper files (XML).
 There are two IIB workspaces provided.
@@ -18,8 +17,6 @@ This utility is a work in progess and at this point in time it will attempt to d
 2) Associate the correct XML Schema for the input and output sides of the map.
 3) Harvest any Java code from the source BO Map and write it to a separate Java file
 4) For simple maps that contain source to target moves only those moves/associations will be created.
-
-The BOMap conversion and Java harvester is: message File_WESBMaptoGDMMapJavaHarvester.msgflow
 
 Therefore, at this point in time the utility represents a rudimentary capability that demonstrates how to navigate BO Map XML and create IIB GDM XML.
 
